@@ -8,7 +8,7 @@ My long-term focus is to make the internals of complex IT landscapes visible and
 
 - Data lineage derivation for existing enterprise systems
 - Visualization-oriented analysis of complex application internals
-- Gradle plugin development and ANTLR-based parsing workflows
+- [Gradle plugin](https://plugins.gradle.org/u/jurgenei) development and ANTLR-based parsing workflows
 - Build reliability, security checks, and CI/CD hardening
 
 ## Why this matters
