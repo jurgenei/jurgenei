@@ -1,6 +1,6 @@
 # Jurgen Hildebrand
 
-Hi, I am Jurgen. I build practical tooling for deriving data lineage from existing systems.
+I build practical tooling for deriving data lineage from existing systems.
 
 My long-term focus is to make the internals of complex IT landscapes visible and understandable through architecture-aware insights gained from years of hands-on work in banking and publishing.
 
@@ -8,9 +8,12 @@ My long-term focus is to make the internals of complex IT landscapes visible and
 
 - Data lineage derivation for existing enterprise systems
 - Visualization-oriented analysis of complex application internals
-- [Gradle plugin](https://plugins.gradle.org/u/jurgenei) development and ANTLR-based parsing workflows
 - Build reliability, security checks, and CI/CD hardening
+- Published work:
+  - [Gradle Plugins](https://plugins.gradle.org/u/jurgenei) 
+  - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei) 
 
+    
 ## Why this matters
 
 Many critical systems are reliable in production but difficult to understand. I focus on turning hidden structure into clear, usable insight so teams can modernize safely, troubleshoot faster, and make better architectural decisions.
