@@ -1,4 +1,4 @@
-# Deriving AST Classes and AST Instances from ANTLR4 Grammars
+# Deriving AST Classes from ANTLR4 Grammars
 
 ## Abstract
 
@@ -395,8 +395,8 @@ The semantic structure is explicit.
 
 Existing:
 
-- gradle-antlr-g4-plugin
-- generic grammar walker
+- gradle-antlr-g4-plugin: ANTLR4 grammar parser
+- gradle-antlr-plugin: generic grammar walker
 
 Produces:
 
