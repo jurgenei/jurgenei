@@ -318,6 +318,16 @@ XDM becomes the canonical representation.
 
 Beautified S-expressions become the universal readable notation.
 
+### 12.1 Reference Implementation in Plugin Ecosystem
+
+The current reference implementation realizes this architecture through four cooperating modules: `xml-sax-sexpr` provides `SExpressionParser`, `SExpressionXmlReader`, and `SExpressionSerializer`; `gradle-xml-plugin` routes `.xml` and `.sexpr` inputs into the same SAX/JAXP transformation and validation pipeline; `gradle-antlr-plugin` supplies grammar-driven structural extraction; and `gradle-ooxml-plugin` supplies Office canonicalisation (`docx4j` + `JAXB`) for high-fidelity formula and diagram capture.
+
+Processing parity is explicit: S-expression is an alternate syntax that is normalized into SAX/JAXP events before downstream processing, so processors such as Saxon receive equivalent event streams and therefore apply XSD type processing and XML pipeline behavior exactly as in the native XML route.
+
+Current implementation boundary is the SAX event layer (including mapping from S-expression to internal `xdm:*` bridge events where required); an XProc-native integration is a possible future extension point, but there is no active plan to move processing responsibility there.
+
+Canonical JSON is supported in `gradle-xml-plugin` as an optional sibling serialization path for selected workflows, while XML/XDM and S-expression remain the primary structural route in this architecture.
+
 ## 13. Conclusion
 
 The proposed architecture combines:
@@ -460,30 +470,35 @@ flowchart LR
     **What Formal Languages Can Transformers Express? A Survey** (TACL 2024)  
     Formal-language-theoretic analysis of transformer expressiveness, including limitations on nested and recursive structures under realistic assumptions.  
     URL: https://arxiv.org/abs/2311.00208  
-    URL: https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00663  【9-5f2ead】【10-27fc9f】【11-5c79b1】
+    URL: https://direct.mit.edu/tacl/article/doi/10.1162/tacl_a_00663  
 
 24. Hildebrand, J.S  
     **gradle-ooxml-plugin README**  
     Documents dedicated Office canonicalisation route (`.docx/.pptx/.xlsx`) using `docx4j` + `JAXB`, formula mapping to MathML, and diagram/graph evidence extraction for deterministic structural output.  
-    Path: [../gradle-ooxml-plugin/README.md](../gradle-ooxml-plugin/README.md)
+    Path: [../../gradle-ooxml-plugin/README.md](../../gradle-ooxml-plugin/README.md)
 
 25. Hildebrand, J.S  
     **Technical Design - gradle-ooxml-plugin**  
     Specifies architecture and canonical data model details for OOXML canonicalisation, including chart and GraphML diagram evidence mapped into canonical XML.  
-    Path: [../gradle-ooxml-plugin/doc/TECHNICAL_DESIGN.md](../gradle-ooxml-plugin/doc/TECHNICAL_DESIGN.md)
+    Path: [../../gradle-ooxml-plugin/doc/TECHNICAL_DESIGN.md](../../gradle-ooxml-plugin/doc/TECHNICAL_DESIGN.md)
 
 26. Hildebrand, J.S  
     **gradle-antlr-plugin README**  
     Documents ANTLR-based grammar walker
-    Path: [../gradle-antlr-plugin/README.md](../gradle-antlr-plugin/README.md)
+    Path: [../../gradle-antlr-plugin/README.md](../../gradle-antlr-plugin/README.md)
 
 27. Hildebrand, J.S  
-    **xml-sexpr-plugin README**  
-    Specifies architecture and canonical data model details for ANTLR-based grammar walker, including event-driven AST construction and XDM projection.
-    Path: [../xml-sexpr-plugin/README.md](../xml-sexpr-plugin/README.md)
+    **xml-sax-sexpr README**  
+    Documents SAX parser/serializer/XMLReader support for canonical S-expression syntax, including `xdm:map`, `xdm:array`, typed atomics, and bridge namespace rules.
+    Path: [../../xml-sax-sexpr/README.md](../../xml-sax-sexpr/README.md)
 
 28. Hildebrand, J.S
     **S-XDM implementation specification**
-    Path: [S-XDM-Comprehensive-Implementation-Spec.md](S-XDM-Implementation-Spec.md)
+    Path: [S-XDM-Implementation-Spec.md](S-XDM-Implementation-Spec.md)
+
+29. Hildebrand, J.S
+    **gradle-xml-plugin README**
+    Documents `.sexpr` input/output routing, canonical JSON optional routing, and shared SAX/JAXP execution path in `XsltTask` and `XQueryTask`.
+    Path: [../../gradle-xml-plugin/README.md](../../gradle-xml-plugin/README.md)
 
 
