@@ -8,7 +8,7 @@
 
 The rapid growth of software systems, enterprise architectures, knowledge models, and AI-driven analysis has created a proliferation of incompatible representation formats. Programming languages use Abstract Syntax Trees (ASTs), business analysts use ArchiMate models, document systems use XML, APIs use JSON, and semantic systems use RDF/OWL.
 
-This paper proposes a Universal Knowledge Intermediate Representation (UKIR) built upon the XQuery and XPath Data Model (XDM), generated through interchangeable source parser adapters. Adapters can be grammar-driven pipelines (for example ANTLR parser + grammar walker) or dedicated canonicalisation pipelines (for example OOXML canonicalisers built with `docx4j` + `JAXB`). The model is serialized using a beautified S-expression syntax that preserves structural fidelity while minimizing syntactic overhead. The approach leverages existing XML technologies such as XPath, XQuery, XSLT, XML Schema, and Schematron while providing a representation that is compact, machine-friendly, human-readable, and AI-friendly.
+This paper proposes a Universal Knowledge Intermediate Representation (UKIR) built upon the XQuery and XPath Data Model (XDM), generated through interchangeable source parser adapters. Adapters can be grammar-driven pipelines (for example ANTLR parser + grammar walker) or dedicated canonicalisation pipelines (for example OOXML canonicalisers built with `docx4j` + `JAXB`). The model is serialized using a beautified S-expression syntax that preserves structural fidelity while minimizing syntactic overhead. The approach leverages existing XML technologies such as XPath, XQuery, XSLT, XML Schema, and Schematron while providing a representation that is compact, machine-friendly, human-readable, and AI-friendly. The primary motivation is to produce deterministic, graph-ready knowledge artifacts that can be loaded into property graph stores for downstream reasoning and analytics.
 
 ## 1. Introduction
 
@@ -25,6 +25,8 @@ Despite their differences, most ultimately encode structured information.
 The central thesis of this paper is:
 
 > Many knowledge domains can be projected onto a common structural representation while preserving their semantics.
+
+This structural projection is designed to separate deterministic evidence extraction from interpretation so downstream pipelines can construct higher-quality knowledge artifacts for property graph stores.
 
 ## 2. Representation Challenges
 
@@ -302,6 +304,9 @@ flowchart LR
     E --> X[XDM]
     X --> M[AST Metamodel]
     M --> S[Beautified S-Expression]
+    S --> OX[Observation Extraction]
+    OX --> KX[Knowledge Artifacts]
+    KX --> PG[Property Graph Stores]
 
     S --> H[Humans]
     S --> AI[AI Systems]
@@ -500,5 +505,10 @@ flowchart LR
     **gradle-xml-plugin README**
     Documents `.sexpr` input/output routing, canonical JSON optional routing, and shared SAX/JAXP execution path in `XsltTask` and `XQueryTask`.
     Path: [../../gradle-xml-plugin/README.md](../../gradle-xml-plugin/README.md)
+
+30. Hildebrand, J.S
+    **Schematron-Based Observation Extraction**
+    Describes evidence-first extraction flow from canonical XML to observation artifacts and downstream knowledge loading into property graph stores (for example Neo4j).
+    Path: [../../SCHEMATRON_EXTRACTION.md](../../SCHEMATRON_EXTRACTION.md)
 
 
