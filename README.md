@@ -12,6 +12,9 @@ My long-term focus is to make the internals of complex IT landscapes visible and
 - Published work:
   - [Gradle Plugins](https://plugins.gradle.org/u/jurgenei) 
   - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei) 
+- Ongoing work on S-expression support for XML/XDM processing in Gradle and Saxon:
+  - [UKIR_XDM_AST_SExpr_Paper](papers/UKIR_XDM_AST_SExpr_Paper.md)
+  - [S-XDM-Comprehensive-Implementation-Spec](papers/S-XDM-Comprehensive-Implementation-Spec.md)
 
     
 ## Why this matters
