@@ -1,4 +1,4 @@
-# S-XDM Comprehensive Implementation Specification
+# S-XDM Implementation Specification
 
 ## For Developers and Architects
 

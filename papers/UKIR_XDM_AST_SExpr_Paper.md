@@ -484,6 +484,6 @@ flowchart LR
 
 28. Hildebrand, J.S
     **S-XDM implementation specification**
-    Path: [S-XDM-Comprehensive-Implementation-Spec.md](S-XDM-Comprehensive-Implementation-Spec.md)
+    Path: [S-XDM-Comprehensive-Implementation-Spec.md](S-XDM-Implementation-Spec.md)
 
 
