@@ -6,17 +6,16 @@ My long-term focus is to make the internals of complex IT landscapes visible and
 
 ## What I work on
 
-- Data lineage derivation for existing enterprise systems
-- Visualization-oriented analysis of complex application internals
-- Build reliability, security checks, and CI/CD hardening
-- Published work:
-  - [Gradle Plugins](https://plugins.gradle.org/u/jurgenei) 
-  - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei) 
 - Ongoing work on S-expression support for XML/XDM processing in Gradle and Saxon:
   - [XDM, AST Metamodels, and S-Expressions for Human and AI Consumption](papers/UKIR_XDM_AST_SExpr_Paper.md)
   - [S-XDM Implementation Specification](papers/S-XDM-Implementation-Spec.md)
+- Published work:
+  - [Gradle Plugins](https://plugins.gradle.org/u/jurgenei)
+  - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei)
+- Data lineage derivation for existing enterprise systems
+- Visualization-oriented analysis of complex application internals
+- Build reliability, security checks, and CI/CD hardening
 
-    
 ## Why this matters
 
 Many critical systems are reliable in production but difficult to understand. I focus on turning hidden structure into clear, usable insight so teams can modernize safely, troubleshoot faster, and make better architectural decisions.
