@@ -10,7 +10,7 @@ My long-term focus is to make the internals of complex IT landscapes visible and
   - [XDM, AST Metamodels, and S-Expressions for Human and AI Consumption](papers/UKIR_XDM_AST_SExpr_Paper.md)
   - [S-XDM Implementation Specification](papers/S-XDM-Implementation-Spec.md)
   - [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md)
-  - [Modernised jing-trang](https://github.com/jurgenei/jing-trang) - James Clark - RelaxNG
+  - [Modernised jing-trang](https://github.com/jurgenei/jing-trang) - RelaxNG Validator/Schema Converter
 - Published artifacts for Gradle plugin development and Maven Central publishing:
   - [Gradle Plugins](https://plugins.gradle.org/u/jurgenei)
   - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei)
