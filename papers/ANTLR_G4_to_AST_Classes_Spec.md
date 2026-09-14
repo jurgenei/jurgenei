@@ -1,6 +1,6 @@
 # Deriving AST Classes from ANTLR4 Grammars
 
-Work in progess [ast-classes-core](https://github.com/jurgenei/ast-classes-core)
+Work in progess [ast-classes-core](https://github.com/jurgenei/ast-classes-core), [gradle-antlr-g4-plugin](https://github.com/jurgenei/gradle-antlr-g4-plugin)
 
 ## Abstract
 
