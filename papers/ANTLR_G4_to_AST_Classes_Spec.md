@@ -1,5 +1,7 @@
 # Deriving AST Classes from ANTLR4 Grammars
 
+Work in progess [ast-classes-core](https://github.com/jurgenei/ast-classes-core)
+
 ## Abstract
 
 This specification defines an implementable architecture for deriving AST Classes and AST Instances from ANTLR4 grammars. The goal is to create a language-independent structural representation that improves AI reasoning across multiple languages, models, documents, and knowledge domains.
