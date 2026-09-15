@@ -27,6 +27,4 @@ Many critical systems are reliable in production but difficult to understand. I 
 - Hardening GitHub Actions workflows with secure defaults
 - Keeping build pipelines fast, transparent, and maintainable
 
-## Connect
 
-- GitHub: [@jurgenei](https://github.com/jurgenei)
