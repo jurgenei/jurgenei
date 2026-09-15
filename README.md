@@ -6,8 +6,6 @@ My long-term focus is to make the internals of complex IT landscapes visible and
 
 ## What I work on
 
-- Data Lineage
-  - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md)
 - Ongoing work on a unified knowledge representation framework based on XDM and S-expressions, enabling documents, code ASTs, enterprise architecture models, and structured data to be represented, queried, transformed, and exchanged through a common formal model.:
   - [XDM, AST Metamodels, and S-Expressions for Human and AI Consumption](papers/UKIR_XDM_AST_SExpr_Paper.md)
   - [S-XDM Implementation Specification](papers/S-XDM-Implementation-Spec.md)
@@ -17,6 +15,7 @@ My long-term focus is to make the internals of complex IT landscapes visible and
   - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei)
 - Data lineage derivation for existing enterprise systems
 - Visualization-oriented analysis of complex application internals
+  - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md)
 - Build reliability, security checks, and CI/CD hardening
 
 ## Why this matters
