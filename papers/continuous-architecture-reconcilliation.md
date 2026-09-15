@@ -1,6 +1,3 @@
-<!-- FRONTMATTER.BEGIN -->
-⬆️ [README](README.md) > continuous-architecture-reconcilliation
-<!-- FRONTMATTER.END -->
 
 # Continuous Architecture Reconciliation and Near-Reality Lineage
 ## Discussion Capture for Future Conversations
@@ -947,8 +944,5 @@ Alternative broader thesis:
 
 > Enterprise architecture should behave like source code: continuously validated, continuously reconciled and continuously generating lineage, impact analysis and governance evidence.
 
-<!-- BACKMATTER.BEGIN -->
-⬅️ [architecture-overview](architecture-overview.md) | ➡️ [fd-docx-diagram-intro](fd-docx-diagram-intro.md)
-<!-- BACKMATTER.END -->
 
 ---
