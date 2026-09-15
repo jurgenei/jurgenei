@@ -18,7 +18,7 @@ Traditional approaches suffer from several structural issues:
 - Impact assessments rely on expert knowledge and tribal knowledge.
 - Root cause analysis is expensive and slow.
 - Governance repositories are consumers of metadata rather than sources of truth.
-- BCBS239 requires traceability, impact analysis, completeness and understanding of risk data flows.
+- BCBS239 requires traceability, impact analysis, completeness and understanding of data flows.
 - Existing lineage products focus on collecting, storing and visualizing lineage but do not reconcile architectural intent and implementation reality.
 
 Core observation:
@@ -35,7 +35,7 @@ Current implementation scope is:
 flowchart LR  
 
 V[Application]  
-CR[Credit<br/>Risk<br/>Domain]  
+CR[Application<br/>Domain]  
 NRA[Near-Reality<br/>Architecture]  
 NRL[Near-Reality<br/>Lineage]  
 
@@ -46,7 +46,7 @@ NRA --> NRL
 ```
 
 > This is NOT an enterprise-wide lineage platform.
-> It is a reference implementation within a critical risk domain.
+> It is a reference implementation within a critical domain.
 
 ---
 
