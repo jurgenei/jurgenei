@@ -34,7 +34,7 @@ Current implementation scope is:
 ```mermaid  
 flowchart LR  
 
-V[Vortex]  
+V[Application]  
 CR[Credit<br/>Risk<br/>Domain]  
 NRA[Near-Reality<br/>Architecture]  
 NRL[Near-Reality<br/>Lineage]  
