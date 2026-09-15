@@ -13,7 +13,7 @@ My long-term focus is to make the internals of complex IT landscapes visible and
 - Published artifacts for Gradle plugin development and Maven Central publishing:
   - [Gradle Plugins](https://plugins.gradle.org/u/jurgenei)
   - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei)
-- Data lineage derivation for existing enterprise systems
+- Data lineage derivation for existing enterprise applications
   - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md)
 - Visualization-oriented analysis of complex application internals
 - Build reliability, security checks, and CI/CD hardening
