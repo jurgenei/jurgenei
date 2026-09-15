@@ -6,8 +6,9 @@ My long-term focus is to make the internals of complex IT landscapes visible and
 
 ## What I work on
 
-- Ongoing work on a unified knowledge representation framework based on XDM and S-expressions, enabling documents, code ASTs, enterprise architecture models, and structured data to be represented, queried, transformed, and exchanged through a common formal model.:
+- Data Lineage
   - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md)
+- Ongoing work on a unified knowledge representation framework based on XDM and S-expressions, enabling documents, code ASTs, enterprise architecture models, and structured data to be represented, queried, transformed, and exchanged through a common formal model.:
   - [XDM, AST Metamodels, and S-Expressions for Human and AI Consumption](papers/UKIR_XDM_AST_SExpr_Paper.md)
   - [S-XDM Implementation Specification](papers/S-XDM-Implementation-Spec.md)
   - [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md)
