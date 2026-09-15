@@ -276,7 +276,7 @@ The proposed architecture does not exclude RDF(S) or OWL.
 Namespaces remain available.
 
 ```lisp
-(rdf:Description
+(rdf:Description [xmlns:rdf http://www.w3.org/1999/02/22-rdf-syntax-ns#]
     (rdf:type Customer)
     (rdf:name "John"))
 ```
@@ -480,35 +480,26 @@ flowchart LR
 24. Hildebrand, J.S  
     **gradle-ooxml-plugin README**  
     Documents dedicated Office canonicalisation route (`.docx/.pptx/.xlsx`) using `docx4j` + `JAXB`, formula mapping to MathML, and diagram/graph evidence extraction for deterministic structural output.  
-    Path: [../../gradle-ooxml-plugin/README.md](../../gradle-ooxml-plugin/README.md)
+    Path: gradle-ooxml-plugin/README.md](../../gradle-ooxml-plugin/README.md)
 
 25. Hildebrand, J.S  
     **Technical Design - gradle-ooxml-plugin**  
     Specifies architecture and canonical data model details for OOXML canonicalisation, including chart and GraphML diagram evidence mapped into canonical XML.  
-    Path: [../../gradle-ooxml-plugin/doc/TECHNICAL_DESIGN.md](../../gradle-ooxml-plugin/doc/TECHNICAL_DESIGN.md)
+    Path: [gradle-ooxml-plugin/doc/TECHNICAL_DESIGN.md](https://github.com/jurgenei/gradle-ooxml-plugin/doc/TECHNICAL_DESIGN.md)
 
 26. Hildebrand, J.S  
     **gradle-antlr-plugin README**  
     Documents ANTLR-based grammar walker
-    Path: [../../gradle-antlr-plugin/README.md](../../gradle-antlr-plugin/README.md)
+    Path: [gradle-antlr-plugin/README.md](https://github.com/jurgenei/gradle-antlr-plugin/README.md)
 
 27. Hildebrand, J.S  
     **xml-sax-sexpr README**  
     Documents SAX parser/serializer/XMLReader support for canonical S-expression syntax, including `xdm:map`, `xdm:array`, typed atomics, and bridge namespace rules.
-    Path: [../../xml-sax-sexpr/README.md](../../xml-sax-sexpr/README.md)
+    Path: [xml-sax-sexpr/README.md](https://github.com/jurgenei/xml-sax-sexpr/README.md)
 
 28. Hildebrand, J.S
     **S-XDM implementation specification**
     Path: [S-XDM-Implementation-Spec.md](S-XDM-Implementation-Spec.md)
 
-29. Hildebrand, J.S
-    **gradle-xml-plugin README**
-    Documents `.sexpr` input/output routing, canonical JSON optional routing, and shared SAX/JAXP execution path in `XsltTask` and `XQueryTask`.
-    Path: [../../gradle-xml-plugin/README.md](../../gradle-xml-plugin/README.md)
-
-30. Hildebrand, J.S
-    **Schematron-Based Observation Extraction**
-    Describes evidence-first extraction flow from canonical XML to observation artifacts and downstream knowledge loading into property graph stores (for example Neo4j).
-    Path: [../../SCHEMATRON_EXTRACTION.md](../../SCHEMATRON_EXTRACTION.md)
 
 

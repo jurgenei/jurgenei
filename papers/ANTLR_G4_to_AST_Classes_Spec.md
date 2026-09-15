@@ -108,16 +108,22 @@ The AST Classes become the semantic layer.
 ```mermaid
 flowchart LR
 
+    L[Source Language]
     G[ANTLR Grammar]
+    P[(Parser)]
     GA[Grammar AST]
     GM[Grammar Model]
     AC[AST Classes]
     AI[AST Instances]
 
+    L -. conforms to .-> G
+    L --> P
     G --> GA
+    G --> P
+    P -- instance  --> AI 
     GA --> GM
     GM --> AC
-    AC --> AI
+    AC -- model/schema --> AI 
 ```
 
 ---
