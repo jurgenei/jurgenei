@@ -10,13 +10,13 @@ My long-term focus is to make the internals of complex IT landscapes visible and
   - [XDM, AST Metamodels, and S-Expressions for Human and AI Consumption](papers/UKIR_XDM_AST_SExpr_Paper.md)
   - [S-XDM Implementation Specification](papers/S-XDM-Implementation-Spec.md)
   - [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md)
-- Published artifacts for Gradle plugin development and Maven Central publishing:
-  - [Gradle Plugins](https://plugins.gradle.org/u/jurgenei)
-  - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei)
 - Data lineage derivation for existing enterprise applications
   - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md)
 - Visualization-oriented analysis of complex application internals
 - Build reliability, security checks, and CI/CD hardening
+- Published artifacts for Gradle plugin development and Maven Central publishing:
+  - [Gradle Plugins](https://plugins.gradle.org/u/jurgenei)
+  - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei)
 
 ## Why this matters
 
