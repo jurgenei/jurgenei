@@ -4,20 +4,25 @@ I build practical tooling for deriving data lineage from existing systems.
 
 My long-term focus is to make the internals of complex IT landscapes visible and understandable through architecture-aware insights gained from years of hands-on work in banking and publishing.
 
+
+## What I work on
+
+
 ```mermaid
 mindmap
   root((Focus))
     Data Lineage
     Architecture Automation
     Language Technology
-    XML Pipelines
+       Data Visualisation
+       Knowledge Representation
+       Document Engineering
     Gradle Tooling
-    Data Visualisation
+       Plugins
+       XML Pipelines
 ```
-
-## What I work on
-
-- Ongoing work on a unified knowledge representation framework based on XDM and S-expressions, enabling documents, code ASTs, enterprise architecture models, and structured data to be represented, queried, transformed, and exchanged through a common formal model.:
+ 
+Ongoing work on a unified knowledge representation framework based on XDM and S-expressions, enabling documents, code ASTs, enterprise architecture models, and structured data to be represented, queried, transformed, and exchanged through a common formal model:
   - [XDM, AST Metamodels, and S-Expressions for Human and AI Consumption](papers/UKIR_XDM_AST_SExpr_Paper.md)
   - [S-XDM Implementation Specification](papers/S-XDM-Implementation-Spec.md)
   - [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md)
@@ -28,7 +33,6 @@ mindmap
 - Published artifacts for Gradle plugin development and Maven Central publishing:
   - [Gradle Plugins](https://plugins.gradle.org/u/jurgenei)
   - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei)
-
 
 ## Why this matters
 
