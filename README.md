@@ -11,8 +11,9 @@ My long-term focus is to make the internals of complex IT landscapes visible and
 ```mermaid
 mindmap
   root((Focus))
-    Data Lineage
     Architecture Automation
+       Archimate Validation & Transformation workflows
+       Archimate Driven Data Lineage
     Language Technology
        Data Visualisation
        Knowledge Representation
@@ -20,6 +21,9 @@ mindmap
     Gradle Tooling
        Plugins
        XML Pipelines
+    Data Lineage
+      Derivation
+      Stitching
 ```
  
 Ongoing work on a unified knowledge representation framework based on XDM and S-expressions, enabling documents, code ASTs, enterprise architecture models, and structured data to be represented, queried, transformed, and exchanged through a common formal model:
