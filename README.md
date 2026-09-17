@@ -1,6 +1,6 @@
 # Jurgen Hildebrand
 
-I build practical tooling for deriving data lineage from existing systems.
+Building tools for parsing, architecture modelling, XML processing and data lineage.
 
 My long-term focus is to make the internals of complex IT landscapes visible and understandable through architecture-aware insights gained from years of hands-on work in banking and publishing.
 
