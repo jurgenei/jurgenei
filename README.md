@@ -20,7 +20,7 @@ mindmap
        Document Engineering
     Gradle Tooling
        Plugins
-       XML Pipelines
+       XML / S-Expression Pipelines
     Data Lineage
       Derivation
       Stitching
