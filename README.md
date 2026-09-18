@@ -30,7 +30,7 @@ Ongoing work on a unified knowledge representation framework based on XDM and S-
   - [XDM, AST Metamodels, and S-Expressions for Human and AI Consumption](papers/UKIR_XDM_AST_SExpr_Paper.md)
   - [S-XDM Implementation Specification](papers/S-XDM-Implementation-Spec.md)
   - [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md)
-  - [Universal_Semantic_Lineage_Architecture](Universal_Semantic_Lineage_Architecture]) - Better Reasoning, Lower Cost, Reproducibility, and ESG
+  - [Universal_Semantic_Lineage_Architecture](papers/Universal_Semantic_Lineage_Architecture.md) - Better Reasoning, Lower Cost, Reproducibility, and ESG
 - Data lineage derivation for existing enterprise applications
   - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md)
 - Visualization-oriented analysis of complex application internals
