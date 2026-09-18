@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "README.md",
-                "mode": "preview",
+                "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
@@ -189,5 +189,9 @@
     }
   },
   "active": "0807b40003616a78",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "papers/UKIR_XDM_AST_SExpr_Paper.md",
+    "README.md",
+    "papers/Universal_Semantic_Lineage_Architecture.md"
+  ]
 }
