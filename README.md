@@ -26,18 +26,20 @@ mindmap
       Stitching
 ```
  
-Ongoing work on a unified knowledge representation framework based on XDM and S-expressions, enabling documents, code ASTs, enterprise architecture models, and structured data to be represented, queried, transformed, and exchanged through a common formal model:
-  - [XDM, AST Metamodels, and S-Expressions for Human and AI Consumption](papers/UKIR_XDM_AST_SExpr_Paper.md)
-  - [S-XDM Implementation Specification](papers/S-XDM-Implementation-Spec.md)
-  - [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md)
-  - [Universal_Semantic_Lineage_Architecture](papers/Universal_Semantic_Lineage_Architecture.md) - Better Reasoning, Lower Cost, Reproducibility, and ESG
-  - [Extract, Derive, Resolve, Publish](papers/Extract-Derive-Resolve-Publish-Paper.md) - A Story About Structure, Understanding, and the Reuse of Knowledge
-  - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md) - Data lineage derivation for existing enterprise applications
+Ongoing work on a unified knowledge representation framework based on XDM and S-expressions, enabling documents, code ASTs, enterprise architecture models, and structured data to be represented, queried, transformed, and exchanged through a common formal model.
+
 - Visualization-oriented analysis of complex application internals
 - Build reliability, security checks, and CI/CD hardening
 - Published artifacts for Gradle plugin development and Maven Central publishing:
   - [Gradle Plugins](https://plugins.gradle.org/u/jurgenei)
   - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei)
+- Some of my notes:
+  - [XDM, AST Metamodels, and S-Expressions for Human and AI Consumption](papers/UKIR_XDM_AST_SExpr_Paper.md)
+  - [S-XDM Implementation Specification](papers/S-XDM-Implementation-Spec.md)
+  - [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md)
+  - [Universal_Semantic_Lineage_Architecture](papers/Universal_Semantic_Lineage_Architecture.md) - Better Reasoning, Lower Cost, Reproducibility, and ESG
+  - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md) - Data lineage derivation for existing enterprise applications
+  -  [Extract, Derive, Resolve, Publish](papers/Extract-Derive-Resolve-Publish-Paper.md) - A Story About Structure, Understanding, and the Reuse of Knowledge
 
 ## Why this matters
 
