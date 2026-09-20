@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "papers/Extract-Derive-Resolve-Publish-Paper.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "Extract-Derive-Resolve-Publish-Paper"
             }
           }
         ]
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "papers/Universal_Semantic_Lineage_Architecture.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "papers/Universal_Semantic_Lineage_Architecture.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md",
+                "file": "papers/Universal_Semantic_Lineage_Architecture.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -190,8 +190,10 @@
   },
   "active": "0807b40003616a78",
   "lastOpenFiles": [
-    "papers/Universal_Semantic_Lineage_Architecture.md",
+    "papers/S-XDM-Implementation-Spec.md",
+    "papers/Extract-Derive-Resolve-Publish-Paper.md",
     "README.md",
+    "papers/Universal_Semantic_Lineage_Architecture.md",
     "papers/Universal_Semantic_Lineage_Architecture].md",
     "papers/UKIR_XDM_AST_SExpr_Paper.md"
   ]

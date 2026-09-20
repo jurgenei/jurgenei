@@ -31,8 +31,8 @@ Ongoing work on a unified knowledge representation framework based on XDM and S-
   - [S-XDM Implementation Specification](papers/S-XDM-Implementation-Spec.md)
   - [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md)
   - [Universal_Semantic_Lineage_Architecture](papers/Universal_Semantic_Lineage_Architecture.md) - Better Reasoning, Lower Cost, Reproducibility, and ESG
-- Data lineage derivation for existing enterprise applications
-  - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md)
+  - [Extract, Derive, Resolve, Publish](papers/Extract-Derive-Resolve-Publish-Paper.md) - A Story About Structure, Understanding, and the Reuse of Knowledge
+  - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md) - Data lineage derivation for existing enterprise applications
 - Visualization-oriented analysis of complex application internals
 - Build reliability, security checks, and CI/CD hardening
 - Published artifacts for Gradle plugin development and Maven Central publishing:
