@@ -45,11 +45,11 @@ Everything else is a consequence.
 
 # The Structural Foundation
 
-At the foundation sits [XDM](https://www.w3.org/TR/xpath-datamodel-31/), the XML Data Model, together with XSD as a type system.
+At the foundation sits [XDM](https://www.w3.org/TR/xpath-datamodel-31/), the XML Data Model, together with [XSD](https://www.w3.org/TR/xmlschema11-2/#built-in-datatypes) as a type system.
 
 The important observation is that XDM is not merely about XML. Hierarchies, maps, lists, values, namespaces and references can all be represented within the model.
 
-A compact Lisp-inspired serialization called S‑XDM can represent the same structure with less syntactic repetition.
+A compact Lisp-inspired serialisation called [S‑XDM](S-XDM-Implementation-Spec.md) can represent the same structure with less syntactic repetition.
 
 ```xml
 <customer id="123">
