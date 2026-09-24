@@ -40,6 +40,8 @@ Ongoing work on a unified knowledge representation framework based on XDM and S-
   - [Universal_Semantic_Lineage_Architecture](papers/Universal_Semantic_Lineage_Architecture.md) - Better Reasoning, Lower Cost, Reproducibility, and ESG
   - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md) - Data lineage derivation for existing enterprise applications
   -  [Extract, Derive, Resolve, Publish](papers/Extract-Derive-Resolve-Publish-Paper.md) - A Story About Structure, Understanding, and the Reuse of Knowledge
+- ongoing projects
+  - [PlSql lineage example](https://github.com/jurgenei/example-lineage-plsql)   
 
 ## Why this matters
 
