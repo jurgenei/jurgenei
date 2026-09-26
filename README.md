@@ -73,7 +73,8 @@ Ongoing work on a unified knowledge representation framework based on XDM and S-
   - [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md)
   - [Universal_Semantic_Lineage_Architecture](papers/Universal_Semantic_Lineage_Architecture.md) - Better Reasoning, Lower Cost, Reproducibility, and ESG
   - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md) - Data lineage derivation for existing enterprise applications
-  -  [Extract, Derive, Resolve, Publish](papers/Extract-Derive-Resolve-Publish-Paper.md) - A Story About Structure, Understanding, and the Reuse of Knowledge
+  - [Extract, Derive, Resolve, Publish](papers/Extract-Derive-Resolve-Publish-Paper.md) - A Story About Structure, Understanding, and the Reuse of Knowledge
+  - [Noema XExpr Whitepaper](papers/Noema_XExpr_Whitepaper.md) - A Unified Knowledge Representation Framework
 - ongoing projects
   - [PlSql lineage example](https://github.com/jurgenei/example-lineage-plsql)   
 
@@ -81,10 +82,37 @@ Ongoing work on a unified knowledge representation framework based on XDM and S-
 
 Many critical systems are reliable in production but difficult to understand. I focus on turning hidden structure into clear, usable insight so teams can modernize safely, troubleshoot faster, and make better architectural decisions.
 
-## Current focus
 
-- Improving plugin reliability for real-world projects
-- Hardening GitHub Actions workflows with secure defaults
-- Keeping build pipelines fast, transparent, and maintainable
+# Looking Forward
+
+```mermaid
+mindmap
+  root((Self-Describing Systems))
+    Modeling
+      Knowledge Representation
+      Metadata Extraction
+      Semantic Structures
+
+    Derivation
+      Architecture Views
+      Lineage Views
+      Dependency Views
+      Documentation Views
+
+    Visualization
+      Graphs
+      Diagrams
+      Exploration
+
+    Automation
+      Validation
+      Transformation
+      Generation
+
+    Outcomes
+      Traceability
+      Understanding
+      Governance
+```
 
 
