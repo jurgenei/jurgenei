@@ -1,29 +1,63 @@
 # Jurgen Hildebrand
 
-Building tools for parsing, architecture modelling, XML processing and data lineage.
+Turning information into models and models into understanding.
 
-My long-term focus is to make the internals of complex IT landscapes visible and understandable through architecture-aware insights gained from years of hands-on work in banking and publishing.
+## Examples
+
+- Text → Trees
+- Documents → Structures
+- Metadata → Graphs
+- Dependencies → Lineage
+- Architectures → Models
+- Data → Visualizations
+- Complexity → Insight
+
+## Focus Areas
+
+- Language tooling
+- Metadata management
+- Data lineage
+- Enterprise architecture
+- Visualization
+- Knowledge graphs
 
 
-## What I work on
-
+## Work
 
 ```mermaid
 mindmap
-  root((Focus))
-    Architecture Automation
-       Archimate Validation & Transformation workflows
-       Archimate Driven Data Lineage
-    Language Technology
-       Data Visualisation
-       Knowledge Representation
-       Document Engineering
-    Gradle Tooling
-       Plugins
-       XML / S-Expression Pipelines
-    Data Lineage
-      Derivation
-      Stitching
+  root((Complex Information))
+
+    Text
+      Grammars
+      Parsing
+      Syntax Trees
+
+    Documents
+      OOXML
+      XML
+      Validation
+      Transformation
+
+    Metadata
+      Lineage
+      Knowledge Graphs
+      Dependency Models
+
+    Architectures
+      ArchiMate
+      Analysis
+      Automation
+
+    Visualizations
+      Diagrams
+      Graphs
+      Exploration
+
+    Understanding
+      Insight
+      Traceability
+      Decision Support
 ```
  
 Ongoing work on a unified knowledge representation framework based on XDM and S-expressions, enabling documents, code ASTs, enterprise architecture models, and structured data to be represented, queried, transformed, and exchanged through a common formal model.
