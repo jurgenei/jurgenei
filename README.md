@@ -60,21 +60,22 @@ mindmap
       Decision Support
 ```
  
-Ongoing work on a unified knowledge representation framework based on XDM and S-expressions, enabling documents, code ASTs, enterprise architecture models, and structured data to be represented, queried, transformed, and exchanged through a common formal model.
+Ongoing work on XIR (eXtensible Intermediate Representation), a universal semantic representation framework based on XDM and S-expressions, enabling documents, code ASTs, enterprise architecture models, and structured data to be represented, queried, transformed, and exchanged through a common formal model.
 
 - Visualization-oriented analysis of complex application internals
 - Build reliability, security checks, and CI/CD hardening
 - Published artifacts for Gradle plugin development and Maven Central publishing:
   - [Gradle Plugins](https://plugins.gradle.org/u/jurgenei)
   - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei)
-- Some of my notes:
-  - [XDM, AST Metamodels, and S-Expressions for Human and AI Consumption](papers/UKIR_XDM_AST_SExpr_Paper.md) - A Unified Knowledge Representation Framework for Human and AI Consumption
-  - [S-XDM Implementation Specification](papers/S-XDM-Implementation-Spec.md) - Lisp S-Expressions for XML and XDM
+- Research papers and specifications:
+  - [XIR Positioning Note](papers/XIR_W3C_Positioning_Note.md) - XIR's role in the W3C standards ecosystem
+  - [XIR Structural Model and S-Expression Serialization](papers/XIR_Structural_Model_Paper.md) - XDM, AST Metamodels, and S-Expressions for Human and AI Consumption
+  - [XIR Implementation Specification](papers/XIR-Implementation-Spec.md) - Canonical XIR serialization via XDM structural model
   - [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md) - Deriving Schemas from ANTLR4 grammars.
   - [Universal_Semantic_Lineage_Architecture](papers/Universal_Semantic_Lineage_Architecture.md) - Better Reasoning, Lower Cost, Reproducibility, and ESG
   - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md) - Data lineage derivation for existing enterprise applications
   - [Extract, Derive, Resolve, Publish](papers/Extract-Derive-Resolve-Publish-Paper.md) - A Story About Structure, Understanding, and the Reuse of Knowledge
-  - [Noema XExpr Whitepaper](papers/Noema_XExpr_Whitepaper.md) - A Unified Knowledge Representation Framework
+  - [Noema XIR Whitepaper](papers/Noema_XIR_Whitepaper.md) - Expression formats and evaluation
 - ongoing projects
   - [PlSql lineage example](https://github.com/jurgenei/example-lineage-plsql)   
 

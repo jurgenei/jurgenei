@@ -1,16 +1,20 @@
-# S-XDM Implementation Specification
+# XIR Implementation Specification
 
 ## For Developers and Architects
 
+**Canonical XIR serialization via XDM structural model and S-expression syntax**
+
 Version: 1.0 (merged MVP + reference spec)
+
+> **See also:** [XIR Positioning Note for W3C Communities](XIR_W3C_Positioning_Note.md) for broader context on XIR's role in the standards ecosystem.
 
 ## 1. Purpose
 
-Define one implementation spec for S-XDM in `gradle-xml-plugin` ecosystem.
+Define one implementation spec for XIR (eXtensible Intermediate Representation) in `gradle-xml-plugin` ecosystem.
 
 Goal:
 
-- prove S-XDM is complete, lossless structural serialization route for XDM-compatible content
+- prove XIR serialization is complete, lossless structural representation for XDM-compatible content
 - deliver minimal, shippable Gradle integration first
 - preserve expansion path to richer XDM constructs without rewrite
 
@@ -27,8 +31,8 @@ Non-goal:
 
 Must implement:
 
-- XML <-> S-XDM roundtrip through SAX/JAXP pipeline
-- `.sexpr` input and output support in Gradle tasks
+- XML <-> XIR roundtrip through SAX/JAXP pipeline
+- `.sexpr` input and output support in Gradle tasks (XIR canonical serialization format)
 - lossless support for XML document, elements, attributes, namespaces, text, comments, processing instructions
 - deterministic serializer output
 
@@ -53,27 +57,27 @@ Adds:
 ```text
 Read path (.xml/.sexpr)
   input file
-    -> source adapter (XMLReader or SExpressionXmlReader)
+    -> source adapter (XMLReader or XIR expression reader)
     -> SAX events
     -> internal model/events
     -> Saxon/JAXP transform pipeline
 
 Write path (.xml/.sexpr)
   transform result (events/model)
-    -> serializer adapter (XML serializer or SExpressionSerializer)
+    -> serializer adapter (XML serializer or XIR expression serializer)
     -> output file
 ```
 
 ### 3.2 Layer responsibilities
 
 - XML Import Layer: build events/model from standard XML reader
-- S-XDM Reader: parse `.sexpr` into SAX-compatible event stream
+- XIR Reader: parse `.sexpr` (XIR canonical form) into SAX-compatible event stream
 - Internal Model Layer: preserve ordering, namespaces, node kinds, lexical values
-- S-XDM Writer: serialize events/model to canonical S-expression syntax
+- XIR Writer: serialize events/model to canonical XIR expression syntax
 - XML Export Layer: emit XML through JAXP/SAX serializer
 - Gradle Integration Layer: choose adapters by extension and task config
 
-## 4. Canonical S-XDM Syntax
+## 4. XIR Canonical Syntax (S-Expression Serialization)
 
 ### 4.1 Node heads
 
@@ -88,7 +92,7 @@ Write path (.xml/.sexpr)
 - `{ ... }` associative payload container (attributes, PI pseudo-attributes, map entries)
 - `[ ... ]` sequence payload container (arrays)
 
-### 4.3 Reserved heads for non-element XDM structures
+### 4.3 Reserved heads for XDM structures beyond XML
 
 - `(xdm:map { key value ... })`
 - `(xdm:array [ item ... ])`
@@ -96,7 +100,7 @@ Write path (.xml/.sexpr)
 Disambiguation rule:
 
 - `(map ...)` and `(array ...)` remain normal XML elements
-- only `xdm:map` and `xdm:array` represent XDM map/array
+- only `xdm:map` and `xdm:array` represent XDM structured types
 
 ### 4.4 Attribute representation
 
@@ -167,7 +171,7 @@ Source source = new SAXSource(new SExpressionXmlReader(), new InputSource(reader
 
 ```java
 public final class SExpressionSerializer implements ContentHandler {
-    // consumes SAX events and writes canonical S-XDM
+    // consumes SAX events and writes canonical XIR expression
 }
 ```
 
@@ -184,24 +188,24 @@ Contract:
 ```kotlin
 enum class XmlDocumentType {
     XML,
-    SEXPR
+    XIR_SEXPR
 }
 ```
 
 Detection rules:
 
-- `.sexpr` -> `SEXPR`
+- `.sexpr` -> `XIR_SEXPR` (XIR canonical serialization format)
 - other configured XML extensions -> `XML`
 
 ### 7.2 Input adapter selection
 
-If input extension is `.sexpr`, task must build source using `SAXSource(SExpressionXmlReader)`.
+If input extension is `.sexpr`, task must build source using `SAXSource(SExpressionXmlReader())` (XIR reader).
 
 Otherwise use existing XML parser source path.
 
 ### 7.3 Output adapter selection
 
-If output extension is `.sexpr`, task must attach `SExpressionSerializer`.
+If output extension is `.sexpr`, task must attach `SExpressionSerializer()` (XIR writer).
 
 Otherwise use existing XML serializer path.
 
@@ -235,21 +239,21 @@ Roundtrip validation baseline:
 
 ```text
 input.xml
-  -> xmlToSexpr
-  -> a.sexpr
-  -> sexprToXml
+  -> xml-to-xir
+  -> a.sexpr (XIR canonical form)
+  -> xir-to-xml
   -> b.xml
 
 canonicalize(input.xml) == canonicalize(b.xml)
 ```
 
-For `.sexpr` origin:
+For `.sexpr` (XIR) origin:
 
 ```text
 input.sexpr
-  -> sexprToXml
+  -> xir-to-xml
   -> x.xml
-  -> xmlToSexpr
+  -> xml-to-xir
   -> y.sexpr
 
 normalize(input.sexpr) == normalize(y.sexpr)
@@ -311,7 +315,7 @@ Targets for MVP:
 Guidance:
 
 - prefer streaming writer APIs
-- avoid building full DOM for XML <-> S-XDM conversion path
+- avoid building full DOM for XML <-> XIR conversion path
 - benchmark with small, medium, large fixture sets
 
 ## 13. Test Strategy
@@ -325,8 +329,8 @@ Guidance:
 
 ### 13.2 Integration tests
 
-- XML -> S-XDM -> XML roundtrip
-- S-XDM -> XML -> S-XDM roundtrip
+- XML -> XIR -> XML roundtrip
+- XIR -> XML -> XIR roundtrip
 - Gradle task extension-based adapter selection
 
 ### 13.3 Regression fixtures
@@ -372,9 +376,9 @@ Phase 2 (Reference):
 
 Phase 3 (Future):
 
-- S-XSD
-- S-XSLT
-- XPath expression syntax representation
+- XIR-XSD (XSD representation for XIR)
+- XIR-XSLT (XSLT transformation representation for XIR)
+- XPath expression syntax representation in XIR
 - function items
 - schema-aware processing
 - AI evaluation benchmark
@@ -383,10 +387,10 @@ Phase 3 (Future):
 
 Release is successful when:
 
-- XML -> S-XDM works on fixture corpus
-- S-XDM -> XML works on fixture corpus
+- XML -> XIR works on fixture corpus
+- XIR -> XML works on fixture corpus
 - lossless roundtrip proven by automated canonical comparisons
-- Gradle tasks accept `.sexpr` input and output without custom user plumbing
+- Gradle tasks accept `.sexpr` (XIR) input and output without custom user plumbing
 - deterministic output proven across repeated runs
 - test suite passes in CI
 
@@ -395,5 +399,5 @@ Release is successful when:
 This specification merges and supersedes:
 
 - `xml-sax-sexpr/gradle-xml-plugin-sexpr-mvp.md`
-- `xml-sax-sexpr/S-XDM-Reference-Implementation-Spec.md`
+- `xml-sax-sexpr/XIR-Reference-Implementation-Spec.md`
 

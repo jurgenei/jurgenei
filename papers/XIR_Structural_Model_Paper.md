@@ -1,14 +1,16 @@
-# Toward a Universal Knowledge Intermediate Representation
+# XIR Structural Model and S-Expression Serialization
 
 ## XDM, AST Metamodels, and S-Expressions for Human and AI Consumption
 
 **Jurgen Hildebrand (Concept Paper)**
 
+> **See also:** [XIR Positioning Note for W3C Communities](XIR_W3C_Positioning_Note.md) for XIR's broader positioning in the W3C standards ecosystem, and [XIR Implementation Specification](XIR-Implementation-Spec.md) for technical implementation details.
+
 ## Abstract
 
 The rapid growth of software systems, enterprise architectures, knowledge models, and AI-driven analysis has created a proliferation of incompatible representation formats. Programming languages use Abstract Syntax Trees (ASTs), business analysts use ArchiMate models, document systems use XML, APIs use JSON, and semantic systems use RDF/OWL.
 
-This paper proposes a Universal Knowledge Intermediate Representation (UKIR) built upon the XQuery and XPath Data Model (XDM), generated through interchangeable source parser adapters. Adapters can be grammar-driven pipelines (for example ANTLR parser + grammar walker) or dedicated canonicalisation pipelines (for example OOXML canonicalisers built with `docx4j` + `JAXB`). The model is serialized using a beautified S-expression syntax that preserves structural fidelity while minimizing syntactic overhead. The approach leverages existing XML technologies such as XPath, XQuery, XSLT, XML Schema, and Schematron while providing a representation that is compact, machine-friendly, human-readable, and AI-friendly. The primary motivation is to produce deterministic, graph-ready knowledge artifacts that can be loaded into property graph stores for downstream reasoning and analytics.
+This paper describes XIR (eXtensible Intermediate Representation), a universal structural model built upon the XQuery and XPath Data Model (XDM). XIR is generated through interchangeable source parser adapters. Adapters can be grammar-driven pipelines (for example ANTLR parser + grammar walker) or dedicated canonicalisation pipelines (for example OOXML canonicalisers built with `docx4j` + `JAXB`). The model is serialized using a beautified S-expression syntax that preserves structural fidelity while minimizing syntactic overhead. The approach leverages existing XML technologies such as XPath, XQuery, XSLT, XML Schema, and Schematron while providing a representation that is compact, machine-friendly, human-readable, and AI-friendly. The primary motivation is to produce deterministic, graph-ready knowledge artifacts that can be loaded into property graph stores for downstream reasoning and analytics.
 
 ## 1. Introduction
 
@@ -293,7 +295,7 @@ flowchart LR
 
 RDF and OWL become optional semantic layers rather than mandatory foundations.
 
-## 12. Universal Knowledge Intermediate Representation
+## 12. XIR (eXtensible Intermediate Representation)
 
 ```mermaid
 flowchart LR
@@ -301,9 +303,9 @@ flowchart LR
     O[Office Documents] --> C[OOXML Canonicaliser: docx4j + JAXB]
     A --> E[Structural Events]
     C --> E
-    E --> X[XDM]
+    E --> X[XDM: XIR Semantic Substrate]
     X --> M[AST Metamodel]
-    M --> S[Beautified S-Expression]
+    M --> S[XIR Serialization: Beautified S-Expression]
     S --> OX[Observation Extraction]
     OX --> KX[Knowledge Artifacts]
     KX --> PG[Property Graph Stores]
@@ -319,19 +321,19 @@ Parser adapter becomes ingestion boundary.
 
 The metamodel becomes the semantic layer.
 
-XDM becomes the canonical representation.
+XDM becomes XIR's canonical structural representation.
 
-Beautified S-expressions become the universal readable notation.
+Beautified S-expressions become the universal readable notation for XIR.
 
 ### 12.1 Reference Implementation in Plugin Ecosystem
 
-The current reference implementation realizes this architecture through four cooperating modules: `xml-sax-sexpr` provides `SExpressionParser`, `SExpressionXmlReader`, and `SExpressionSerializer`; `gradle-xml-plugin` routes `.xml` and `.sexpr` inputs into the same SAX/JAXP transformation and validation pipeline; `gradle-antlr-plugin` supplies grammar-driven structural extraction; and `gradle-ooxml-plugin` supplies Office canonicalisation (`docx4j` + `JAXB`) for high-fidelity formula and diagram capture.
+The current reference implementation realizes this architecture through four cooperating modules: `xml-sax-sexpr` provides XIR expression parser, reader, and serializer components; `gradle-xml-plugin` routes `.xml` and `.sexpr` (XIR) inputs into the same SAX/JAXP transformation and validation pipeline; `gradle-antlr-plugin` supplies grammar-driven structural extraction; and `gradle-ooxml-plugin` supplies Office canonicalisation (`docx4j` + `JAXB`) for high-fidelity formula and diagram capture.
 
-Processing parity is explicit: S-expression is an alternate syntax that is normalized into SAX/JAXP events before downstream processing, so processors such as Saxon receive equivalent event streams and therefore apply XSD type processing and XML pipeline behavior exactly as in the native XML route.
+Processing parity is explicit: XIR serialization (S-expression syntax) is an alternate representation that is normalized into SAX/JAXP events before downstream processing, so processors such as Saxon receive equivalent event streams and therefore apply XSD type processing and XML pipeline behavior exactly as in the native XML route.
 
-Current implementation boundary is the SAX event layer (including mapping from S-expression to internal `xdm:*` bridge events where required); an XProc-native integration is a possible future extension point, but there is no active plan to move processing responsibility there.
+Current implementation boundary is the SAX event layer (including mapping from XIR expressions to internal `xdm:*` bridge events where required); an XProc-native integration is a possible future extension point, but there is no active plan to move processing responsibility there.
 
-Canonical JSON is supported in `gradle-xml-plugin` as an optional sibling serialization path for selected workflows, while XML/XDM and S-expression remain the primary structural route in this architecture.
+Canonical JSON is supported in `gradle-xml-plugin` as an optional sibling serialization path for selected workflows, while XML/XDM and XIR serialization (S-expression) remain the primary structural route in this architecture.
 
 ## 13. Conclusion
 
@@ -494,12 +496,12 @@ flowchart LR
 
 27. Hildebrand, J.S  
     **xml-sax-sexpr README**  
-    Documents SAX parser/serializer/XMLReader support for canonical S-expression syntax, including `xdm:map`, `xdm:array`, typed atomics, and bridge namespace rules.
+    Documents SAX parser/serializer/XMLReader support for XIR canonical serialization (S-expression syntax), including `xdm:map`, `xdm:array`, typed atomics, and bridge namespace rules.
     Path: [xml-sax-sexpr/README.md](https://github.com/jurgenei/xml-sax-sexpr/README.md)
 
 28. Hildebrand, J.S
-    **S-XDM implementation specification**
-    Path: [S-XDM-Implementation-Spec.md](S-XDM-Implementation-Spec.md)
+    **XIR implementation specification**
+    Path: [XIR Implementation Specification (formerly S-XDM-Implementation-Spec.md)](XIR-Implementation-Spec.md)
 
 
 

@@ -1,9 +1,9 @@
-# Noema and XExpr
+# Noema and XIR
 ## Whitepaper: Self‑Describing Systems, Technology Freedom, and Knowledge Preservation
 
 ### Abstract
 
-Noema is a vision for representing knowledge independently of implementation technology. It proposes that architecture, lineage, documentation, visualization, governance, and dependency analysis are not separate disciplines but projections of a common semantic model. XExpr serves as the foundational representation model used to capture meaning in a form that is both formally processable and understandable by humans.
+Noema is a vision for representing knowledge independently of implementation technology. It proposes that architecture, lineage, documentation, visualization, governance, and dependency analysis are not separate disciplines but projections of a common semantic model. XIR serves as the foundational representation model used to capture meaning in a form that is both formally processable and understandable by humans.
 
 The long-term objective is the creation of self-describing systems: systems capable of deriving their own architecture, lineage, documentation, and operational knowledge from information already present within the system itself.
 
@@ -80,13 +80,13 @@ Understanding → Architecture
 
 ---
 
-# 4. XExpr
+# 4. XIR
 
-XExpr is the proposed representation foundation.
+XIR is the proposed representation foundation.
 
 Historically, S-expressions demonstrated the power of simple recursive structures.
 
-XExpr extends the idea toward document-centric and metadata-centric systems.
+XIR extends the idea toward document-centric and metadata-centric systems.
 
 Design goals:
 
@@ -306,7 +306,7 @@ This allows continuous evolution without continuous rediscovery.
 
 Potential future work:
 
-- Formal XExpr specification
+- Formal XIR specification
 - Semantic inference engine
 - Self-lineage generation algorithms
 - Architecture derivation engine
@@ -346,7 +346,7 @@ Everything else becomes a generated projection.
 
 Noema is a vision for preserving meaning across technological change.
 
-XExpr provides a possible representation foundation for expressing knowledge in a formal yet understandable form.
+XIR provides a possible representation foundation for expressing knowledge in a formal yet understandable form.
 
 The long-term destination is a world of self-describing systems where architecture, lineage, documentation, and visualization emerge from a shared semantic model.
 

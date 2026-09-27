@@ -1,6 +1,8 @@
 # Extract, Derive, Resolve, Publish
 ## A Story About Structure, Understanding, and the Reuse of Knowledge
 
+> **See also:** [XIR Positioning Note for W3C Communities](XIR_W3C_Positioning_Note.md) for how these concepts fit into the broader XIR framework and W3C standards ecosystem.
+
 ### Introduction
 
 Most organizations believe they suffer from a lack of information.
@@ -49,7 +51,7 @@ At the foundation sits [XDM](https://www.w3.org/TR/xpath-datamodel-31/), the XML
 
 The important observation is that XDM is not merely about XML. Hierarchies, maps, lists, values, namespaces and references can all be represented within the model.
 
-A compact Lisp-inspired serialisation called [S‑XDM](S-XDM-Implementation-Spec.md) can represent the same structure with less syntactic repetition.
+XIR (eXtensible Intermediate Representation) provides [canonical S-expression serialization of XDM](XIR-Implementation-Spec.md) with less syntactic repetition than XML.
 
 ```xml
 <customer id="123">

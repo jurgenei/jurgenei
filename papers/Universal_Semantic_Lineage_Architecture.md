@@ -1,5 +1,7 @@
 # Universal Semantic Lineage Architecture
 
+> **See also:** [XIR Positioning Note for W3C Communities](XIR_W3C_Positioning_Note.md) for how this lineage architecture relates to XIR's role in providing common semantic substrate across standards.
+
 ## 1. Introduction: Better Reasoning, Lower Cost, Reproducibility, and ESG
 
 Organizations increasingly rely on artificial intelligence to understand software systems, data platforms, business processes, technical documents, architecture models, and operational environments. A common problem is that most information exists in many different formats and tools. Database definitions, documents, architecture diagrams, formulas, source code, and metadata are stored separately and expressed in different languages.
