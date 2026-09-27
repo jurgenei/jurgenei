@@ -2,11 +2,13 @@
 
 ## Abstract
 
-XIR (eXtensible Intermediate Representation) is a complementary semantic representation layer designed to improve interoperability between standards, tools, governance platforms, lineage systems, validation frameworks, and AI-enabled systems.
+XIR (eXtensible Intermediate Representation) is a compact, expression-oriented serialization of XDM designed for semantic, governance, lineage, and interoperability use cases.
 
-XIR is not intended to replace XML, RDF, SKOS, SHACL, PROV-O, or related standards. Instead, it provides a common, schema-driven representation capable of hosting and connecting these standards while preserving semantic intent, derivation, traceability, and explainability.
+XIR is not intended to replace XML, RDF, SKOS, SHACL, PROV-O, or related standards. Any information represented in XIR can, in principle, also be represented using existing standards and formats. The primary motivation for XIR is to provide a representation that is closer to abstract syntax trees, semantic expressions, and derivation models, while reducing syntactic overhead and simplifying transformation, analysis, and schema-driven processing.
 
-The objective is to reduce duplication of meaning across technical representations and provide a common substrate for semantic interoperability across both human- and machine-oriented systems.
+XIR is particularly suited to environments where information is derived from grammars, schemas, validation rules, lineage models, queries, or domain-specific languages. Through its expression-oriented structure, XIR aims to provide a common representation that can host and connect existing standards while remaining efficient for transformation pipelines, governance workflows, and AI-assisted processing.
+
+The objective is not to replace existing semantic technologies, but to provide a lightweight representation layer that reduces duplication across technical formats and enables consistent handling of meaning, derivation, traceability, and explanation.
 
 ---
 
