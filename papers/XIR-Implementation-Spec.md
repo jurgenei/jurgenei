@@ -298,19 +298,64 @@ because they represent evaluation semantics rather than structure.
 
 ### 4.5.2 Variable and Symbol Representation
 
-Variable names, identifiers, and symbols are represented using ordinary values.
+Variable names, identifiers, and symbols are represented as **text values within XDM structures**.
 
-Examples:
+They must appear in XDM-valid contexts:
+
+**In maps (as keys or values):**
 
 ```lisp
-customer
-
-ns:customer
-
-rdf:subject
-
-skos:concept
+{
+  type "BinaryExpression"
+  operator "+"
+}
 ```
+
+**In sequences:**
+
+```lisp
+[
+  "customer"
+  "ns:customer"
+  "rdf:subject"
+]
+```
+
+**As text node children of elements:**
+
+```lisp
+(predicate "rdf:subject")
+```
+
+**NOT valid as bare element children:**
+
+```lisp
+;; INVALID - bare symbols as children
+(isa BinaryExpression Expression)
+
+;; VALID - symbols as text content
+(isa "BinaryExpression" "Expression")
+
+;; VALID - symbols in map
+{
+  isa "BinaryExpression"
+  extends "Expression"
+}
+```
+
+**Rationale:**
+
+XDM allows only these node types and values:
+- Element nodes
+- Attribute nodes (in maps)
+- Text nodes (quoted strings)
+- Comment nodes
+- Processing instruction nodes
+- Maps (XDM sequences of key-value pairs)
+- Sequences (XDM arrays)
+- Atomic values (strings, numbers, booleans, etc.)
+
+Bare symbols are not XDM node types. They must be text-wrapped to conform to XDM.
 
 No XIR-specific variable namespace is required.
 
@@ -319,12 +364,61 @@ Bindings, scopes, and symbol tables belong to higher-level languages that may be
 This principle preserves the separation:
 
 ```text
-XIR             = representation
+XIR             = XDM representation
 
 Hosted language = semantics
 ```
 
-and prevents XIR from becoming an execution language.
+and ensures XIR conformance to XDM while remaining representation-focused, not execution-focused.
+
+### 4.5.3 XDM Conformance Rules
+
+**XIR MUST map to valid XDM. All XIR constructs MUST be expressible as XDM.**
+
+**Valid XIR element children:**
+
+- Text nodes: `"string"`
+- Element nodes: `(qname ...)`
+- Maps: `{ key value ... }`
+- Sequences: `[ item ... ]`
+
+**Valid XIR map keys and values:**
+
+- Strings: `"value"`
+- Numbers: `42`, `3.14`
+- Booleans: `true`, `false`
+- Element nodes: `(qname ...)`
+- Maps: `{ ... }`
+- Sequences: `[ ... ]`
+
+**Invalid XIR constructs (non-XDM):**
+
+```lisp
+;; INVALID: bare symbol as element child
+(isa BinaryExpression Expression)
+
+;; INVALID: bare symbol in sequence
+[ customer ns:customer rdf:subject ]
+
+;; INVALID: unquoted identifiers
+(name John age 42)
+```
+
+**Valid alternatives:**
+
+```lisp
+;; VALID: text children
+(isa "BinaryExpression" "Expression")
+
+;; VALID: text in sequence
+[ "customer" "ns:customer" "rdf:subject" ]
+
+;; VALID: map with text values
+(person
+  { name "John" age "42" })
+```
+
+This constraint ensures XIR is a transparent representation layer for XDM, not a separate language.
 
 ### 4.6 Attribute representation
 
@@ -366,7 +460,7 @@ Serializer must emit canonical `{ ... }` form.
 ### 6.1 Parser core
 
 ```java
-public final class SExpressionParser {
+public final class XirParser {
     public void parse(Reader reader, ContentHandler handler) throws IOException, SAXException;
 }
 ```
@@ -380,21 +474,21 @@ Contract:
 ### 6.2 SAX adapter for input
 
 ```java
-public final class SExpressionXmlReader implements XMLReader {
-    // bridges SExpressionParser to SAXSource
+public final class XirReader implements XMLReader {
+    // bridges XirParser to SAXSource
 }
 ```
 
 Usage:
 
 ```java
-Source source = new SAXSource(new SExpressionXmlReader(), new InputSource(reader));
+Source source = new SAXSource(new XirReader(), new InputSource(reader));
 ```
 
 ### 6.3 Serializer for output
 
 ```java
-public final class SExpressionSerializer implements ContentHandler {
+public final class XirSerializer implements ContentHandler {
     // consumes SAX events and writes canonical XIR expression
 }
 ```
@@ -423,13 +517,13 @@ Detection rules:
 
 ### 7.2 Input adapter selection
 
-If input extension is `.xir`, task must build source using `SAXSource(SExpressionXmlReader())` (XIR reader).
+If input extension is `.xir`, task must build source using `SAXSource(XirReader())` (XIR reader).
 
 Otherwise use existing XML parser source path.
 
 ### 7.3 Output adapter selection
 
-If output extension is `.xir`, task must attach `SExpressionSerializer()` (XIR writer).
+If output extension is `.xir`, task must attach `XirSerializer()` (XIR writer).
 
 Otherwise use existing XML serializer path.
 
@@ -571,9 +665,9 @@ Include fixtures for:
 
 MVP deliverables:
 
-1. `SExpressionParser`
-2. `SExpressionXmlReader`
-3. `SExpressionSerializer`
+1. `XirParser`
+2. `XirReader`
+3. `XirSerializer`
 4. extension-based source selection in Gradle tasks
 5. extension-based result selection in Gradle tasks
 6. roundtrip integration tests with canonical equality assertions

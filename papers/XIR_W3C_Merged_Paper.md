@@ -240,23 +240,53 @@ Applications MUST preserve this distinction.
 
 ### Variable and Symbol Representation
 
-Variable names and symbols use ordinary values:
+Variable names and symbols are represented as **text values within XDM structures**.
+
+They must appear in XDM-valid contexts:
+
+**In maps:**
 
 ```lisp
-customer
-ns:customer
-rdf:subject
-skos:concept
+{
+  type "BinaryExpression"
+  operator "+"
+}
+```
+
+**In sequences:**
+
+```lisp
+[
+  "customer"
+  "ns:customer"
+  "rdf:subject"
+]
+```
+
+**As text node children:**
+
+```lisp
+(predicate "rdf:subject")
+```
+
+**NOT valid as bare element children:**
+
+```lisp
+;; INVALID
+(isa BinaryExpression Expression)
+
+;; VALID
+(isa "BinaryExpression" "Expression")
 ```
 
 No XIR-specific variable namespace is required.
 
 Bindings, scopes, and symbol tables belong to hosted languages, not XIR itself.
 
-This preserves separation:
+This preserves XDM conformance and separation:
 
 ```text
-XIR = representation
+XIR = XDM representation
 Hosted language = semantics
 ```
 
