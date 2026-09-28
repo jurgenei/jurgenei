@@ -32,7 +32,7 @@ Non-goal:
 Must implement:
 
 - XML <-> XIR roundtrip through SAX/JAXP pipeline
-- `.sexpr` input and output support in Gradle tasks (XIR canonical serialization format)
+- `.xir` ()  input and output support in Gradle tasks (XIR canonical serialization format)
 - lossless support for XML document, elements, attributes, namespaces, text, comments, processing instructions
 - deterministic serializer output
 
@@ -55,14 +55,14 @@ Adds:
 ### 3.1 Logical flow
 
 ```text
-Read path (.xml/.sexpr)
+Read path (.xml/.xir)
   input file
     -> source adapter (XMLReader or XIR expression reader)
     -> SAX events
     -> internal model/events
     -> Saxon/JAXP transform pipeline
 
-Write path (.xml/.sexpr)
+Write path (.xml/.xir)
   transform result (events/model)
     -> serializer adapter (XML serializer or XIR expression serializer)
     -> output file
@@ -71,7 +71,7 @@ Write path (.xml/.sexpr)
 ### 3.2 Layer responsibilities
 
 - XML Import Layer: build events/model from standard XML reader
-- XIR Reader: parse `.sexpr` (XIR canonical form) into SAX-compatible event stream
+- XIR Reader: parse `.xir` (XIR canonical form) into SAX-compatible event stream
 - Internal Model Layer: preserve ordering, namespaces, node kinds, lexical values
 - XIR Writer: serialize events/model to canonical XIR expression syntax
 - XML Export Layer: emit XML through JAXP/SAX serializer
@@ -94,15 +94,239 @@ Write path (.xml/.sexpr)
 
 ### 4.3 Reserved heads for XDM structures beyond XML
 
-- `(xdm:map { key value ... })`
-- `(xdm:array [ item ... ])`
+Use delimiter-based types defined in section 4.4 (maps with `{}`, sequences with `[]`).
 
-Disambiguation rule:
+### 4.4 Structured Values: Maps and Sequences
 
-- `(map ...)` and `(array ...)` remain normal XML elements
-- only `xdm:map` and `xdm:array` represent XDM structured types
+XIR directly represents XDM structured values using native delimiters.
 
-### 4.4 Attribute representation
+### 4.4.1 Maps
+
+Maps are represented using `{}`.
+
+Example:
+
+```lisp
+{
+  name "John"
+  age 42
+  active true
+}
+```
+
+Equivalent conceptual form:
+
+```json
+{
+  "name": "John",
+  "age": 42,
+  "active": true
+}
+```
+
+### 4.4.2 Arrays and Sequences
+
+Arrays and sequences are represented using `[]`.
+
+Example:
+
+```lisp
+[
+  "red"
+  "green"
+  "blue"
+]
+```
+
+Equivalent conceptual form:
+
+```json
+[
+  "red",
+  "green",
+  "blue"
+]
+```
+
+### 4.4.3 Nested Structures
+
+Maps and arrays may be nested arbitrarily.
+
+Example:
+
+```lisp
+{
+  id "cust-1"
+
+  emails [
+    "john@example.com"
+    "john.smith@example.com"
+  ]
+
+  tags [
+    "preferred"
+    "active"
+  ]
+}
+```
+
+### 4.4.4 Arrays of Maps
+
+```lisp
+[
+  {
+    id 1
+    name "John"
+  }
+
+  {
+    id 2
+    name "Jane"
+  }
+]
+```
+
+These structures represent XDM maps and sequences directly and do not require special node heads.
+
+### 4.4.5 Delimiter-Defined Types
+
+Map and sequence identity are defined by delimiters, not reserved qualified names.
+
+Canonical forms:
+
+- `{ ... }` → XDM map
+- `[ ... ]` → XDM sequence
+
+Rationale:
+
+- removes the need for an XDM namespace
+- reduces syntactic overhead
+- improves readability
+- aligns with JSON and AST-oriented representations
+- preserves structural fidelity
+
+### 4.4.6 Element Nodes versus Maps
+
+Element nodes remain distinct from maps.
+
+Element node:
+
+```lisp
+(customer
+  {
+    id "cust-1"
+  }
+  (name "John")
+)
+```
+
+Map:
+
+```lisp
+{
+  id "cust-1"
+  name "John"
+}
+```
+
+The first form is an XML/XDM element node with attribute map and child element.
+
+The second form is a map value.
+
+Applications MUST preserve this distinction.
+
+### 4.5 Representation versus Evaluation
+
+XIR is a representation format.
+
+XIR does not define:
+
+- variable bindings
+- execution contexts
+- query semantics
+- transformation semantics
+- rule evaluation semantics
+
+These concerns belong to processing environments that consume XIR.
+
+Example:
+
+```lisp
+{
+  customer {
+    id "cust-1"
+    name "John"
+  }
+}
+```
+
+XIR defines only structure.
+
+Interpretation is external.
+
+### 4.5.1 Evaluation Context Example
+
+A processor MAY interpret the structure:
+
+```lisp
+{
+  customer {
+    id "cust-1"
+    name "John"
+  }
+}
+```
+
+as an environment:
+
+```text
+customer ↦ {
+  id "cust-1"
+  name "John"
+}
+```
+
+However, the binding relationship is external to the XIR representation.
+
+XIR intentionally avoids introducing reserved forms such as:
+
+- `(bind customer ...)`
+- `(let customer ...)`
+- `(var customer ...)`
+
+because they represent evaluation semantics rather than structure.
+
+### 4.5.2 Variable and Symbol Representation
+
+Variable names, identifiers, and symbols are represented using ordinary values.
+
+Examples:
+
+```lisp
+customer
+
+ns:customer
+
+rdf:subject
+
+skos:concept
+```
+
+No XIR-specific variable namespace is required.
+
+Bindings, scopes, and symbol tables belong to higher-level languages that may be serialized in XIR but are not part of XIR itself.
+
+This principle preserves the separation:
+
+```text
+XIR             = representation
+
+Hosted language = semantics
+```
+
+and prevents XIR from becoming an execution language.
+
+### 4.6 Attribute representation
 
 Canonical form uses associative payload in element body:
 
@@ -194,18 +418,18 @@ enum class XmlDocumentType {
 
 Detection rules:
 
-- `.sexpr` -> `XIR_SEXPR` (XIR canonical serialization format)
+- `.xir` -> `XIR_SEXPR` (XIR canonical serialization format)
 - other configured XML extensions -> `XML`
 
 ### 7.2 Input adapter selection
 
-If input extension is `.sexpr`, task must build source using `SAXSource(SExpressionXmlReader())` (XIR reader).
+If input extension is `.xir`, task must build source using `SAXSource(SExpressionXmlReader())` (XIR reader).
 
 Otherwise use existing XML parser source path.
 
 ### 7.3 Output adapter selection
 
-If output extension is `.sexpr`, task must attach `SExpressionSerializer()` (XIR writer).
+If output extension is `.xir`, task must attach `SExpressionSerializer()` (XIR writer).
 
 Otherwise use existing XML serializer path.
 
@@ -213,7 +437,7 @@ Otherwise use existing XML serializer path.
 
 ```kotlin
 xslt {
-    input.set(file("input.sexpr"))
+    input.set(file("input.xir"))
     output.set(file("output.xml"))
 }
 ```
@@ -221,7 +445,7 @@ xslt {
 ```kotlin
 xslt {
     input.set(file("input.xml"))
-    output.set(file("output.sexpr"))
+    output.set(file("output.xir"))
 }
 ```
 
@@ -240,23 +464,23 @@ Roundtrip validation baseline:
 ```text
 input.xml
   -> xml-to-xir
-  -> a.sexpr (XIR canonical form)
+  -> a.xir (XIR canonical form)
   -> xir-to-xml
   -> b.xml
 
 canonicalize(input.xml) == canonicalize(b.xml)
 ```
 
-For `.sexpr` (XIR) origin:
+For `.xir` (XIR) origin:
 
 ```text
-input.sexpr
+input.xir
   -> xir-to-xml
   -> x.xml
   -> xml-to-xir
-  -> y.sexpr
+  -> y.xir
 
-normalize(input.sexpr) == normalize(y.sexpr)
+normalize(input.xir) == normalize(y.xir)
 ```
 
 `normalize` means parser + serializer canonical formatting pass.
@@ -356,9 +580,8 @@ MVP deliverables:
 
 Reference profile deliverables:
 
-1. `xdm:map` and `xdm:array` full support
-2. typed atomic policy hooks
-3. optional Saxon profile bridge
+1. typed atomic policy hooks
+2. optional Saxon profile bridge
 
 ## 15. Implementation Phasing
 
@@ -390,7 +613,7 @@ Release is successful when:
 - XML -> XIR works on fixture corpus
 - XIR -> XML works on fixture corpus
 - lossless roundtrip proven by automated canonical comparisons
-- Gradle tasks accept `.sexpr` (XIR) input and output without custom user plumbing
+- Gradle tasks accept `.xir` input and output without custom user plumbing
 - deterministic output proven across repeated runs
 - test suite passes in CI
 

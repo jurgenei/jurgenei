@@ -496,7 +496,7 @@ flowchart LR
 
 27. Hildebrand, J.S  
     **xml-sax-sexpr README**  
-    Documents SAX parser/serializer/XMLReader support for XIR canonical serialization (S-expression syntax), including `xdm:map`, `xdm:array`, typed atomics, and bridge namespace rules.
+    Documents SAX parser/serializer/XMLReader support for XIR canonical serialization (S-expression syntax), delimiter-based maps and sequences, typed atomics, and bridge namespace rules.
     Path: [xml-sax-sexpr/README.md](https://github.com/jurgenei/xml-sax-sexpr/README.md)
 
 28. Hildebrand, J.S
