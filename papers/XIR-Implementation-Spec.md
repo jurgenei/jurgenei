@@ -506,13 +506,13 @@ Contract:
 ```kotlin
 enum class XmlDocumentType {
     XML,
-    XIR_SEXPR
+    XIR
 }
 ```
 
 Detection rules:
 
-- `.xir` -> `XIR_SEXPR` (XIR canonical serialization format)
+- `.xir` -> `XIR` (XIR canonical serialization format)
 - other configured XML extensions -> `XML`
 
 ### 7.2 Input adapter selection
