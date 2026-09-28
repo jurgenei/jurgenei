@@ -6,7 +6,7 @@ Work in progess [ast-classes-core](https://github.com/jurgenei/ast-classes-core)
 
 This specification defines an implementable architecture for deriving AST Classes and AST Instances from ANTLR4 grammars. The goal is to create a language-independent structural representation that improves AI reasoning across multiple languages, models, documents, and knowledge domains.
 
-The approach introduces an AST Class layer between grammar definitions and AST instances. The AST Class layer acts as a semantic model that can be serialized as S-expressions, represented in XDM, transformed to schemas, and supplied to AI systems as compact semantic context.
+The approach introduces an AST Class layer between grammar definitions and AST instances. The AST Class layer acts as a semantic model that can be serialized as XIR (eXtensible Intermediate Representation), an S-expression format representing XDM (XML Data Model). XIR enables transformation to schemas, interoperability with XDM-compliant systems, and distribution to AI systems as compact semantic context.
 
 ---
 
@@ -199,7 +199,7 @@ assignment
 becomes:
 
 ```lisp
-(class Assignment)
+(class "Assignment")
 ```
 
 ---
@@ -217,10 +217,10 @@ assignment
 becomes:
 
 ```lisp
-(class Assignment)
+(class "Assignment")
 
-(rel Assignment target Identifier 1)
-(rel Assignment value Expression 1)
+(rel { source "Assignment" name "target" type "Identifier" cardinality "1" })
+(rel { source "Assignment" name "value" type "Expression" cardinality "1" })
 ```
 
 ---
@@ -245,7 +245,7 @@ parameter*
 becomes:
 
 ```lisp
-(rel Procedure parameter Parameter *)
+(rel { source "Procedure" name "parameter" type "Parameter" cardinality "*" })
 ```
 
 ---
@@ -263,11 +263,11 @@ expression
 becomes:
 
 ```lisp
-(class Expression)
+(class "Expression")
 
-(isa FunctionCall Expression)
-(isa BinaryExpression Expression)
-(isa Literal Expression)
+(isa { subclass "FunctionCall" superclass "Expression" })
+(isa { subclass "BinaryExpression" superclass "Expression" })
+(isa { subclass "Literal" superclass "Expression" })
 ```
 
 ---
@@ -296,32 +296,34 @@ Do not become AST Classes.
 Minimal vocabulary:
 
 ```lisp
-(class Assignment)
+(class "Assignment")
 
-(rel Assignment target Identifier 1)
+(rel { source "Assignment" name "target" type "Identifier" cardinality "1" })
 
-(rel Assignment value Expression 1)
+(rel { source "Assignment" name "value" type "Expression" cardinality "1" })
 
-(ref VariableReference declaration VariableDeclaration 1)
+(ref { source "VariableReference" name "declaration" type "VariableDeclaration" cardinality "1" })
 
-(isa BinaryExpression Expression)
+(isa { subclass "BinaryExpression" superclass "Expression" })
 ```
 
 Definitions:
 
-- class = concept
-- rel = containment relationship
-- ref = reference relationship
-- isa = inheritance
+- `class` = concept (single text child with concept name)
+- `rel` = containment relationship (map with keys: source, name, type, cardinality)
+- `ref` = reference relationship (map with keys: source, name, type, cardinality)
+- `isa` = inheritance (map with keys: subclass, superclass)
 
 Cardinalities:
 
 ```text
-1
-?
-*
-+
+"1"
+"?"
+"*"
+"+"
 ```
+
+**XDM Conformance & XML Roundtripping:** Maps provide named keys, preserving semantic meaning through XML serialization/deserialization. All keys and values are quoted text.
 
 ---
 
@@ -338,12 +340,14 @@ AST Instance:
 ```lisp
 (Assignment
   (target
-    (Identifier salary))
+    (Identifier "salary"))
   (value
-    (Literal 1000)))
+    (Literal "1000")))
 ```
 
 The AST Instance must conform to the AST Classes.
+
+**XDM Conformance:** All data values and identifiers are properly quoted as text nodes.
 
 ---
 
@@ -378,17 +382,17 @@ The instance provides:
 AST Classes:
 
 ```lisp
-(class Assignment)
-(rel Assignment target Identifier 1)
-(rel Assignment value Expression 1)
+(class "Assignment")
+(rel { source "Assignment" name "target" type "Identifier" cardinality "1" })
+(rel { source "Assignment" name "value" type "Expression" cardinality "1" })
 ```
 
 AST Instance:
 
 ```lisp
 (Assignment
-    (target (Identifier salary))
-    (value (Literal 1000)))
+    (target (Identifier "salary"))
+    (value (Literal "1000")))
 ```
 
 The AI no longer needs to infer the meaning of target and value.
@@ -435,23 +439,27 @@ Responsibilities:
 
 ## XDM Layer
 
-AST Classes and AST Instances are representable as XDM.
+AST Classes and AST Instances are representable as XDM and serialized via XIR (eXtensible Intermediate Representation).
 
 ```mermaid
 flowchart LR
     AC[AST Classes]
     X[XDM]
+    XIR[XIR]
     AI[AST Instances]
 
     AC --> X
     AI --> X
+    X --> XIR
 ```
+
+XIR provides the canonical S-expression serialization that enforces XDM conformance.
 
 ---
 
 ## S-Expression Layer
 
-Canonical human and AI representation.
+Canonical human and AI representation using XIR serialization.
 
 ```mermaid
 flowchart LR
@@ -463,15 +471,57 @@ flowchart LR
 
 Examples:
 
+AST Class in XIR:
+
 ```lisp
-(class Assignment)
+(class "Assignment")
 ```
+
+AST Instance in XIR:
 
 ```lisp
 (Assignment
-    (target (Identifier salary))
-    (value (Literal 1000)))
+    (target (Identifier "salary"))
+    (value (Literal "1000")))
 ```
+
+Both forms are valid XDM and can be serialized as S-expressions using XIR canonical syntax.
+
+---
+
+## XIR Representation and XDM Conformance
+
+AST Classes and AST Instances are serialized as XIR documents that conform to XDM (XML Data Model).
+
+**Key Requirements:**
+
+1. **Named Keys in Maps:** Relationships use maps with named keys for robust XML roundtripping.
+   
+   Invalid (positional): `(rel "Assignment" "target" "Identifier" "1")` — order fragility during serialization.
+   
+   Valid (map): `(rel { source "Assignment" name "target" type "Identifier" cardinality "1" })` — semantics preserved.
+
+2. **Inheritance with Maps:** Inheritance relationships use maps with subclass/superclass keys.
+   
+   Invalid (positional): `(isa "BinaryExpression" "Expression")` — order fragility.
+   
+   Valid (map): `(isa { subclass "BinaryExpression" superclass "Expression" })` — semantic clarity.
+
+3. **Element Names:** Element names like `class`, `rel`, `ref`, `isa` are ordinary XML element names.
+   
+   Valid: `(class "Assignment")` ✓
+   
+   Invalid: `(class Assignment)` ✗
+
+4. **Child Nodes:** Only these XDM node types are valid as element children:
+   - Text nodes: `"value"`
+   - Child elements: `(target (Identifier "salary"))`
+   - Maps: `{ source "Assignment" name "target" type "Identifier" cardinality "1" }`
+   - Sequences: `[ "item1" "item2" ]`
+
+5. **No Bare Symbols:** Unquoted identifiers are NOT valid XDM values.
+
+This conformance ensures AST Classes and Instances can interoperate with any system consuming XDM/XIR, including schema generators, AI systems, and documentation tools.
 
 ---
 
@@ -535,14 +585,21 @@ flowchart LR
     AC[AST Classes]
     AI[AST Instances]
     X[XDM]
-    S[SExpr]
+    XIR[XIR]
 
     G --> GM
     GM --> AC
     AC --> AI
     AC --> X
     AI --> X
-    X --> S
+    X --> XIR
 ```
 
 The AST Classes become the semantic vocabulary of a language and provide a compact, explicit, AI-friendly representation that can be shared across grammars, languages, models, and knowledge domains.
+
+AST Classes and Instances are serialized via XIR (S-expressions representing XDM). XIR conformance ensures:
+
+- All identifiers and values are properly quoted text nodes
+- Structures conform to XDM node types (elements, text, maps, sequences)
+- Interoperability with XDM-compliant systems and schema generators
+- Portable representation across documentation, AI, and transformation tools
