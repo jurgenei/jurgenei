@@ -72,6 +72,7 @@ Ongoing work on XIR (eXtensible Intermediate Representation), a universal semant
   - [XIR Structural Model and S-Expression Serialization](papers/XIR_Structural_Model_Paper.md) - XDM, AST Metamodels, and S-Expressions for Human and AI Consumption
   - [XIR Implementation Specification](papers/XIR-Implementation-Spec.md) - Canonical XIR serialization via XDM structural model
   - [XIR vs CAST Paper](papers/XIR_vs_CAST_Paper.md) - XIR vs CAST: A Comparison of Two Approaches to Software Understanding
+  - [XIR Governance and Evidence-Oriented Enterprise Knowledge Graph Federation](papers/XIR-GOV-Evidence-Oriented-Enterprise-Knowledge-Graph-Federation.md) - XIR for Enterprise Knowledge Graph Federation
   - [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md) - Deriving Schemas from ANTLR4 grammars.
   - [Universal_Semantic_Lineage_Architecture](papers/Universal_Semantic_Lineage_Architecture.md) - Better Reasoning, Lower Cost, Reproducibility, and ESG
   - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md) - Data lineage derivation for existing enterprise applications
