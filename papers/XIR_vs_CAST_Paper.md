@@ -4,9 +4,9 @@
 
 This paper explores two fundamentally different approaches to understanding, governing, and modernizing software estates.
 
-The first approach is represented by commercial software intelligence platforms such as CAST. CAST focuses on automated discovery of software architecture, dependencies, technical debt, modernization candidates, and portfolio intelligence derived from existing implementation assets. CAST reconstructs knowledge from source code and related artifacts. Its goal is software intelligence and portfolio governance.
+The first approach is represented by commercial software intelligence platforms such as [CAST](https://www.castsoftware.com/). CAST focuses on automated discovery of software architecture, dependencies, technical debt, modernization candidates, and portfolio intelligence derived from existing implementation assets. CAST reconstructs knowledge from source code and related artifacts. Its goal is software intelligence and portfolio governance.
 
-The second approach is represented by the ideas explored through XIR (eXtensible Intermediate Representation). XIR was not introduced as a competitor to software intelligence platforms. It emerged from a different question:
+The second approach is represented by the ideas explored through [XIR](XIR_Structural_Model_Paper.md) (eXtensible Intermediate Representation). XIR was not introduced as a competitor to software intelligence platforms. It emerged from a different question:
 
 > How can knowledge be represented in a way that remains explainable, traceable, transformable, auditable, and useful to both humans and AI?
 
@@ -18,7 +18,7 @@ Over time, the objective shifted from building tooling to building explicit repr
 
 A recurring question is:
 
-> Why not simply use [CAST](https://www.castsoftware.com/)?
+> Why not simply use CAST?
 
 The discussion initially appears to compare two solutions for architecture and lineage.
 
