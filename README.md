@@ -73,8 +73,10 @@ Ongoing work on XIR (eXtensible Intermediate Representation), a universal semant
   - [XIR Implementation Specification](papers/XIR-Implementation-Spec.md) - Canonical XIR serialization via XDM structural model
   - [XIR vs CAST Paper](papers/XIR_vs_CAST_Paper.md) - XIR vs CAST: A Comparison of Two Approaches to Software Understanding
   - [XIR Governance and Evidence-Oriented Enterprise Knowledge Graph Federation](papers/XIR-GOV-Evidence-Oriented-Enterprise-Knowledge-Graph-Federation.md) - XIR for Enterprise Knowledge Graph Federation
+  - [The-sel-Derivation-Language-Position-Paper](papers/The-sel-Derivation-Language-Position-Paper.md) - The sel derivation language for XIR
   - [Executable-Architecture-Enterprise-Behavior-Graphs](papers/Executable-Architecture-Enterprise-Behavior-Graphs.md) - Deriving executable behavior graphs from enterprise architecture models
   - [Observation-Driven_Ontology_Alignment](papers/Observation-Driven_Ontology_Alignment.md) - Observation-driven ontology alignment for enterprise knowledge graph federation
+  - [The-sel-Derivation-Language-Position-Paper.md](papers/The-sel-Derivation-Language-Position-Paper.md) - The sel derivation language for XIR
   - [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md) - Deriving Schemas from ANTLR4 grammars.
   - [Universal_Semantic_Lineage_Architecture](papers/Universal_Semantic_Lineage_Architecture.md) - Better Reasoning, Lower Cost, Reproducibility, and ESG
   - [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md) - Data lineage derivation for existing enterprise applications
