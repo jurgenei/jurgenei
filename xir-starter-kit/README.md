@@ -1,8 +1,18 @@
 # XIR Starter Kit
 
-XIR (eXtensible Intermediate Representation) is a compact representation syntax based on XDM concepts and S-expression form.
+XIR (eXtensible Intermediate Representation) is compact structural language for representing documents and models with minimal syntax overhead.
 
-This package provides one canonical entry point for people and agents. Copy the complete directory into a repository, SharePoint library, or knowledge collection. Keep the specification canonical. Link to it instead of duplicating it.
+This package is canonical entry point for first-time readers and coding agents. Copy whole directory into repository, SharePoint library, or knowledge collection. Link to spec files instead of duplicating syntax explanations.
+
+## Narrative spine position
+
+This repository covers **XIR layer** in organization spine:
+
+```text
+Structured Knowledge -> XIR -> Observation -> Derivation -> Knowledge -> Applications
+```
+
+Observation, lineage, governance, modernization, and knowledge graphs are application layers above this kit.
 
 ## Start here
 
@@ -11,6 +21,10 @@ This package provides one canonical entry point for people and agents. Copy the 
 3. Inspect `examples/`.
 4. Give coding agents [.github/AGENTS.md](.github/AGENTS.md).
 5. Use [SKILLS.md](SKILLS.md) when an agent system supports repository skills.
+
+Then continue to:
+- [xir-g4](https://github.com/jurgenei/xir-g4) for observation/derivation pipeline.
+- [example-lineage-plsql](https://github.com/jurgenei/example-lineage-plsql) for application example.
 
 ## Core notation
 
@@ -25,10 +39,6 @@ This package provides one canonical entry point for people and agents. Copy the 
   )
 )
 ```
-
-## Design boundary
-
-XIR is a representation foundation. Observation, lineage, governance, architecture, modernization, and knowledge-management models are applications or vocabularies built on top of XIR. They are not part of the XIR core.
 
 ## Canonical-files rule
 

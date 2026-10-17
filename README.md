@@ -1,134 +1,101 @@
-# Jurgen Hildebrand
+# XIR: Structured Knowledge for Complex Systems
 
-Turning information into models and models into understanding.
+Most enterprise systems are operationally reliable but cognitively hard to understand.
+XIR exists to make structure explicit so teams can trace, govern, modernize, and reason over complex information with less ambiguity.
 
-## Examples
+## Narrative spine
 
-- Text → Trees
-- Documents → Structures
-- Metadata → Graphs
-- Dependencies → Lineage
-- Architectures → Models
-- Data → Visualizations
-- Complexity → Insight
-
-## Focus Areas
-
-- Language tooling
-- Metadata management
-- Data lineage
-- Enterprise architecture
-- Visualization
-- Knowledge graphs
-
-
-## Work
-
-```mermaid
-mindmap
-  root((Complex Information))
-
-    Text
-      Grammars
-      Parsing
-      Syntax Trees
-
-    Documents
-      OOXML
-      XML
-      Validation
-      Transformation
-
-    Metadata
-      Lineage
-      Knowledge Graphs
-      Dependency Models
-
-    Architectures
-      ArchiMate
-      Analysis
-      Automation
-
-    Visualizations
-      Diagrams
-      Graphs
-      Exploration
-
-    Understanding
-      Insight
-      Traceability
-      Decision Support
+```text
+Structured Knowledge
+↓
+XIR
+↓
+Observation
+↓
+Derivation
+↓
+Knowledge
+↓
+Applications
 ```
- 
-Ongoing work on XIR (eXtensible Intermediate Representation), a universal semantic representation framework based on XDM and S-expressions, enabling documents, code ASTs, enterprise architecture models, and structured data to be represented, queried, transformed, and exchanged through a common formal model.
 
-- Visualization-oriented analysis of complex application internals
-- Build reliability, security checks, and CI/CD hardening
-- Published artifacts for Gradle plugin development and Maven Central publishing:
-  - [Gradle Plugins](https://plugins.gradle.org/u/jurgenei)
-  - [Maven Central](https://central.sonatype.com/namespace/name.jurgenei)
-- Papers and specifications (curated reading paths):
-  - **Start here: Data lineage story (gentle path)**
-    1. [Extract, Derive, Resolve, Publish](papers/Extract-Derive-Resolve-Publish-Paper.md) - narrative introduction to turning fragmented information into reusable knowledge.
-    2. [Universal Semantic Lineage Architecture](papers/Universal_Semantic_Lineage_Architecture.md) - practical architecture for deterministic lineage and reproducible reasoning.
-    3. [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md) - near-reality lineage through continuous reconciliation of intent and implementation.
-    4. [Executable Architecture to Enterprise Behavior Graphs](papers/Executable-Architecture-Enterprise-Behavior-Graphs.md) - end-to-end derivation from architecture models to behavior graphs.
-  - **Running example alignment (`example-lineage-plsql`)**
-    - [Project overview and staged lifecycle](https://github.com/jurgenei/example-lineage-plsql/blob/main/README.md) - executable walkthrough from architecture intent to verified lineage.
-    - [Oracle PL/SQL lineage scenario](https://github.com/jurgenei/example-lineage-plsql/blob/main/oracle-plsql-lineage-example.md) - concrete source/target mappings, enrichment, derivation, and propagation.
-    - [Architecture flow diagram](https://github.com/jurgenei/example-lineage-plsql/blob/main/ARCHITECTURE.md) - orchestration of architecture, lineage artifacts, and graph verification.
-    - Reproducible tasks: `./gradlew generateLineage`, `./gradlew verifyKnowledgeGraph`, `./gradlew endToEndTest`.
-  - **Then go deeper: semantic foundation and standards**
-    1. [XIR Structural Model and S-Expression Serialization](papers/XIR_Structural_Model_Paper.md) - canonical structural model for cross-domain representation.
-    2. [XIR Implementation Specification](papers/XIR-Implementation-Spec.md) - implementation contracts and conformance details.
-    3. [XIR Positioning Note](papers/XIR_W3C_Positioning_Note.md) - relation to XML, RDF, SKOS, SHACL, PROV-O, and OpenLineage.
-    4. [XIR W3C Merged Paper](papers/XIR_W3C_Merged_Paper.md) - consolidated standards-oriented version.
-    5. [XIR Starter Kit](xir-starter-kit/README.md) - canonical entry point for XIR adoption and experimentation.
-  - **Governance, evidence, and ontology alignment**
-    1. [Evidence-Oriented Enterprise Knowledge Graph Federation](papers/XIR-GOV-Evidence-Oriented-Enterprise-Knowledge-Graph-Federation.md) - evidence-first governance and federated graph architecture.
-    2. [Observation-Driven Ontology Alignment](papers/Observation-Driven_Ontology_Alignment.md) - explicit, auditable alignment of source and governance semantics.
-    3. [RDF, SKOS and the Collibra Model](papers/RDF_SKOS_Collibra_Mapping.md) - practical mapping trade-offs and cognitive load reduction.
-  - **Methods, language, and implementation extensions**
-    1. [SEL Derivation Language](papers/SEL-Derivation-Language.md) - derivation DSL and normative processing model.
-    2. [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md) - schema derivation from grammars for structured extraction.
-    3. [XIR vs CAST](papers/XIR_vs_CAST_Paper.md) - positioning against software intelligence tooling.
-    4. [Noema XIR Whitepaper](papers/Noema_XIR_Whitepaper.md) - long-horizon vision for self-describing systems.
-- ongoing projects
-  - [PlSql lineage example](https://github.com/jurgenei/example-lineage-plsql)   
+## What XIR is
+
+XIR (eXtensible Intermediate Representation) is a compact structural representation for documents, code structures, architecture models, and metadata.
+
+- **XIR language**: concrete syntax and structural forms (`()`, `{}`, `[]`, document/comment/PI nodes).
+- **XIR information model**: normalized structure used for transformation, validation, lineage, and reasoning.
+- **XIR ecosystem**: tools and applications built on top of the language and model.
+
+Canonical XIR entry point: [xir-starter-kit](xir-starter-kit/README.md)
+
+## Why XIR exists
+
+Without a shared representation layer, teams repeatedly remap semantics between extraction tools, transformation pipelines, lineage models, and governance platforms.
+XIR gives one structural substrate across those stages.
+
+## XIR vs XML, JSON, RDF
+
+- **XML**: strong document syntax; XIR keeps structural rigor while reducing syntax overhead for derivation and transformation workflows.
+- **JSON**: strong exchange format; XIR adds explicit document/element semantics, namespace handling, and mixed structural forms used in model-driven processing.
+- **RDF**: strong graph semantics; XIR does not replace RDF, but provides a structural bridge that can host RDF-oriented models alongside executable transformation artifacts.
+
+## 5-minute reading path
+
+1. **Learn language quickly**: [xir-starter-kit/spec/XIR-QUICK-REFERENCE.md](xir-starter-kit/spec/XIR-QUICK-REFERENCE.md)
+2. **See full definition**: [xir-starter-kit/spec/XIR-LANGUAGE.md](xir-starter-kit/spec/XIR-LANGUAGE.md)
+3. **See observation→derivation mechanics**: [xir-g4](https://github.com/jurgenei/xir-g4)
+4. **See application**: [example-lineage-plsql](https://github.com/jurgenei/example-lineage-plsql)
+
+## Repository map
+
+### Core XIR
+
+- [xir-starter-kit](xir-starter-kit/README.md): language definition, quick reference, examples.
+- [xir-sax](https://github.com/jurgenei/xir-sax): parser/serializer and XMLReader for XIR.
+- [intellij-xir](https://github.com/jurgenei/intellij-xir): IntelliJ plugin support.
+
+### Observation and derivation toolchain
+
+- [xir-g4](https://github.com/jurgenei/xir-g4): grammar-to-model and AST derivation.
+- [gradle-antlr-plugin](https://github.com/jurgenei/gradle-antlr-plugin): grammar-backed AST extraction tasks.
+- [gradle-xml-plugin](https://github.com/jurgenei/gradle-xml-plugin): transformation/validation tasks with XML/XIR routing.
+- [gradle-ooxml-plugin](https://github.com/jurgenei/gradle-ooxml-plugin): deterministic OOXML observation into canonical structures.
+- [gradle-archi-plugin](https://github.com/jurgenei/gradle-archi-plugin): architecture model extraction tasks.
+
+### Knowledge and applications
+
+- [example-lineage-plsql](https://github.com/jurgenei/example-lineage-plsql): executable lineage pipeline from artifacts to graph verification.
+- [react-svg-lineage-browser](https://github.com/jurgenei/react-svg-lineage-browser): lineage visualization.
+
+## Papers by narrative level
+
+### Foundation: why structured knowledge
+
+1. [Extract, Derive, Resolve, Publish](papers/Extract-Derive-Resolve-Publish-Paper.md)
+2. [Universal Semantic Lineage Architecture](papers/Universal_Semantic_Lineage_Architecture.md)
+3. [Continuous Architecture Reconciliation](papers/continuous-architecture-reconcilliation.md)
+
+### Core model and standards positioning
+
+1. [XIR Structural Model and S-Expression Serialization](papers/XIR_Structural_Model_Paper.md)
+2. [XIR Implementation Specification](papers/XIR-Implementation-Spec.md)
+3. [XIR Positioning Note](papers/XIR_W3C_Positioning_Note.md)
+4. [XIR W3C Merged Paper](papers/XIR_W3C_Merged_Paper.md)
+
+### Observation and derivation methods
+
+1. [ANTLR G4 to AST Classes Specification](papers/ANTLR_G4_to_AST_Classes_Spec.md)
+2. [SEL Derivation Language](papers/SEL-Derivation-Language.md)
+3. [Executable Architecture to Enterprise Behavior Graphs](papers/Executable-Architecture-Enterprise-Behavior-Graphs.md)
+
+### Governance and knowledge applications
+
+1. [Evidence-Oriented Enterprise Knowledge Graph Federation](papers/XIR-GOV-Evidence-Oriented-Enterprise-Knowledge-Graph-Federation.md)
+2. [Observation-Driven Ontology Alignment](papers/Observation-Driven_Ontology_Alignment.md)
+3. [RDF, SKOS and the Collibra Model](papers/RDF_SKOS_Collibra_Mapping.md)
 
 ## Why this matters
 
-Many critical systems are reliable in production but difficult to understand. I focus on turning hidden structure into clear, usable insight so teams can modernize safely, troubleshoot faster, and make better architectural decisions.
-
-
-## Looking Forward
-
-```mermaid
-mindmap
-  root((Self-Describing Systems))
-    Modeling
-      Knowledge Representation
-      Metadata Extraction
-      Semantic Structures
-
-    Derivation
-      Architecture Views
-      Lineage Views
-      Dependency Views
-      Documentation Views
-
-    Visualization
-      Graphs
-      Diagrams
-      Exploration
-
-    Automation
-      Validation
-      Transformation
-      Generation
-
-    Outcomes
-      Traceability
-      Understanding
-      Governance
-```
+Governance, lineage, modernization, AI context engineering, enterprise architecture, and knowledge graphs are application layers on top of same representation foundation.
+When observation and derivation share one substrate, knowledge becomes reproducible, testable, and auditable.

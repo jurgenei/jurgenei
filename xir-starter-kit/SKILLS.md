@@ -1,5 +1,15 @@
 # XIR Skills
 
+Use these skills with canonical syntax rules from:
+- [spec/XIR-QUICK-REFERENCE.md](spec/XIR-QUICK-REFERENCE.md)
+- [spec/XIR-LANGUAGE.md](spec/XIR-LANGUAGE.md)
+
+Narrative spine position:
+
+```text
+Structured Knowledge -> XIR -> Observation -> Derivation -> Knowledge -> Applications
+```
+
 ## Skill: Read XIR
 
 Purpose: interpret XIR structure without converting it mentally to JSON or function-call syntax.

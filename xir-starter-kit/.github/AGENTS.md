@@ -1,6 +1,6 @@
 # Agent Instructions for XIR
 
-Use the terms in this file consistently. Do not invent XIR syntax.
+Use XIR terms consistently. Do not invent syntax or domain semantics.
 
 ## Read order
 
@@ -8,20 +8,13 @@ Use the terms in this file consistently. Do not invent XIR syntax.
 2. Read [spec/XIR-LANGUAGE.md](../spec/XIR-LANGUAGE.md).
 3. Inspect the closest relevant file in `examples/`.
 
-## Fixed meanings
+XIR sits at **XIR layer** in spine:
 
-- `(. ...)` represents a document node.
-- `(name ...)` represents an element node.
-- `{...}` represents a map.
-- `[...]` represents an array.
-- `(! ...)` represents a comment node.
-- `(? ...)` represents a processing-instruction node.
-- The first map after an element name is the attribute map.
-- A later map is element content.
-- Map keys and values alternate.
-- Whitespace separates map entries.
-- Do not insert `=`, `:`, or `,` between map keys and values.
-- Namespace declarations use `xmlns` names in the attribute map.
+```text
+Structured Knowledge -> XIR -> Observation -> Derivation -> Knowledge -> Applications
+```
+
+For fixed syntax meanings (`(. ...)`, maps, arrays, attribute-map position, namespace rules), treat [spec/XIR-QUICK-REFERENCE.md](../spec/XIR-QUICK-REFERENCE.md) and [spec/XIR-LANGUAGE.md](../spec/XIR-LANGUAGE.md) as canonical source.
 
 ## Required behavior
 
@@ -32,33 +25,6 @@ Use the terms in this file consistently. Do not invent XIR syntax.
 - Keep domain vocabulary separate from XIR core syntax.
 - State uncertainty when the repository specification does not define a rule.
 - Do not infer missing domain semantics from names alone.
-
-## Minimal valid patterns
-
-```xir
-(root)
-```
-
-```xir
-(root {id "1"})
-```
-
-```xir
-(root {} {key "value"})
-```
-
-```xir
-(root [1 2 3])
-```
-
-```xir
-(.
-  {xmlns:risk "urn:risk" xmlns:gov "urn:governance"}
-  (risk:Exposure
-    (gov:Owner "team-a")
-  )
-)
-```
 
 ## Validation checklist
 

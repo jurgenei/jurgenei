@@ -38,7 +38,6 @@ Must implement:
 
 Out of scope in MVP:
 
-- XDM maps and arrays in Gradle task pipeline unless explicitly enabled
 - schema-aware typing beyond core atomic primitives
 - vendor-specific tree model dependencies
 
@@ -47,8 +46,9 @@ Out of scope in MVP:
 Adds:
 
 - typed atomic value serialization policy
-- XDM maps and arrays via reserved heads
 - optional Saxon-native bridges for tighter XDM alignment
+- configurable string autotyping policy (`STRICT_STRING`, `PROMOTE`)
+- fn namespace XML bridge mapping (`http://www.w3.org/2005/xpath-functions`)
 
 ## 3. Architecture
 
@@ -235,6 +235,36 @@ The second form is a map value.
 
 Applications MUST preserve this distinction.
 
+### 4.4.7 Element disambiguation when first child is map
+
+When an element has no attributes/namespaces and its first child is a map value,
+canonical serialization SHOULD emit an explicit empty associative block:
+
+```lisp
+(element {}
+  {
+    name Jurgen
+    fullName "Jurgen S. Hildebrand"
+  })
+```
+
+This avoids ambiguity between:
+
+- element attribute block
+- map-valued first child
+
+### 4.4.8 Legacy compatibility parse forms
+
+Parsers MAY accept legacy compatibility forms:
+
+- `(xdm:map { ... })`
+- `(xdm:array [ ... ])`
+
+Canonical serializer output MUST use bare forms:
+
+- `{ ... }`
+- `[ ... ]`
+
 ### 4.5 Representation versus Evaluation
 
 XIR is a representation format.
@@ -315,9 +345,9 @@ They must appear in XDM-valid contexts:
 
 ```lisp
 [
-  "customer"
-  "ns:customer"
-  "rdf:subject"
+  customer
+  ns:customer
+  rdf:subject
 ]
 ```
 
@@ -348,14 +378,15 @@ They must appear in XDM-valid contexts:
 XDM allows only these node types and values:
 - Element nodes
 - Attribute nodes (in maps)
-- Text nodes (quoted strings)
+- Text nodes (quoted strings in XML-equivalent text-node contexts)
 - Comment nodes
 - Processing instruction nodes
 - Maps (XDM sequences of key-value pairs)
 - Sequences (XDM arrays)
 - Atomic values (strings, numbers, booleans, etc.)
 
-Bare symbols are not XDM node types. They must be text-wrapped to conform to XDM.
+Bare symbols are not XDM node types. They must appear as atomic values in valid value contexts
+(map values, sequence items, typed atomic payloads), not as free-standing element children.
 
 No XIR-specific variable namespace is required.
 
@@ -384,7 +415,7 @@ and ensures XIR conformance to XDM while remaining representation-focused, not e
 
 **Valid XIR map keys and values:**
 
-- Strings: `"value"`
+- Strings: `"value"` or safe single-token bare form `value`
 - Numbers: `42`, `3.14`
 - Booleans: `true`, `false`
 - Element nodes: `(qname ...)`
@@ -397,11 +428,8 @@ and ensures XIR conformance to XDM while remaining representation-focused, not e
 ;; INVALID: bare symbol as element child
 (isa BinaryExpression Expression)
 
-;; INVALID: bare symbol in sequence
-[ customer ns:customer rdf:subject ]
-
-;; INVALID: unquoted identifiers
-(name John age 42)
+;; INVALID: bare symbol as direct element child
+(customer John)
 ```
 
 **Valid alternatives:**
@@ -410,12 +438,12 @@ and ensures XIR conformance to XDM while remaining representation-focused, not e
 ;; VALID: text children
 (isa "BinaryExpression" "Expression")
 
-;; VALID: text in sequence
-[ "customer" "ns:customer" "rdf:subject" ]
+;; VALID: text/atomic in sequence
+[ customer ns:customer rdf:subject ]
 
-;; VALID: map with text values
+;; VALID: map with mixed atomic values
 (person
-  { name "John" age "42" })
+  { name John age 42 })
 ```
 
 This constraint ensures XIR is a transparent representation layer for XDM, not a separate language.
@@ -440,6 +468,56 @@ Compatibility parse mode may accept legacy MVP attribute block syntax:
 
 Serializer must emit canonical `{ ... }` form.
 
+### 4.7 String quoting and noise reduction
+
+Serializer SHOULD emit unquoted string tokens when value is a safe single token
+(no whitespace, delimiters, escapes, or reserved separators).
+
+Examples:
+
+```lisp
+name Jurgen
+stack XSLT
+```
+
+Serializer MUST keep quotes for unsafe/multi-word values:
+
+```lisp
+fullName "Jurgen S. Hildebrand"
+```
+
+### 4.8 fn namespace XML bridge
+
+For SAX/XML interop in namespace `http://www.w3.org/2005/xpath-functions`,
+serializer/deserializer MUST support:
+
+- `map`
+- `array`
+- `list` (synonym for `array`)
+- `string`
+- `number`
+- `boolean`
+
+Bridge examples:
+
+```xml
+<map xmlns="http://www.w3.org/2005/xpath-functions">
+  <string key="name">Jurgen</string>
+  <string key="fullName">Jurgen S. Hildebrand</string>
+  <number key="age">42</number>
+  <boolean key="hasBike">true</boolean>
+</map>
+```
+
+```lisp
+{
+  name Jurgen
+  fullName "Jurgen S. Hildebrand"
+  age 42
+  hasBike true
+}
+```
+
 ## 5. Supported Constructs Matrix
 
 | Construct | MVP | Reference |
@@ -452,8 +530,10 @@ Serializer must emit canonical `{ ... }` form.
 | Comments | Required | Required |
 | Processing instructions | Required | Required |
 | Typed atomic values | Basic lexical preservation | Typed policy |
-| XDM map | Optional/off by default | Required |
-| XDM array | Optional/off by default | Required |
+| XDM map (`{...}` canonical) | Required | Required |
+| XDM array/sequence (`[...]` canonical) | Required | Required |
+| Legacy wrapper parse (`(xdm:map ...)`, `(xdm:array ...)`) | Compatibility parse only | Compatibility parse only |
+| fn namespace XML bridge (`map`,`array`,`list`,`string`,`number`,`boolean`) | Required | Required |
 
 ## 6. Java Component Contracts
 
@@ -600,6 +680,9 @@ Reference behavior:
   - `xs:integer`
   - `xs:decimal`
   - `xs:double`
+- autotyping mode support:
+  - `STRICT_STRING` (default): lexical booleans/numbers from string domain remain string semantics
+  - `PROMOTE`: lexical booleans/numbers from string domain may be emitted as promoted unquoted tokens
 - extension examples:
 
 ```lisp
@@ -659,7 +742,9 @@ Include fixtures for:
 - namespace rebinding
 - empty elements
 - comments and PIs
-- map/array reserved forms (Reference profile)
+- bare map/array canonical forms (`{...}`, `[...]`)
+- legacy compatibility parse forms (`(xdm:map ...)`, `(xdm:array ...)`)
+- fn-namespace XML bridge forms (`map`, `array`, `list`, `string`, `number`, `boolean`)
 
 ## 14. Deliverables
 
@@ -717,4 +802,3 @@ This specification merges and supersedes:
 
 - `xml-sax-sexpr/gradle-xml-plugin-sexpr-mvp.md`
 - `xml-sax-sexpr/XIR-Reference-Implementation-Spec.md`
-
