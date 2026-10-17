@@ -1,0 +1,10 @@
+(.
+  (entity
+    {id "E1"}
+    {status "active" score 42}
+  )
+  (map-only
+    {}
+    {name "value"}
+  )
+)

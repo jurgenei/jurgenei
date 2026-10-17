@@ -1,0 +1,8 @@
+(.
+  {xmlns "urn:example" xmlns:risk "urn:risk" xmlns:gov "urn:governance"}
+  (risk:Exposure
+    {id "E1"}
+    (risk:Outstanding 1000)
+    (gov:Owner "team-a")
+  )
+)

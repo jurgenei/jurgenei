@@ -83,6 +83,7 @@ Ongoing work on XIR (eXtensible Intermediate Representation), a universal semant
     2. [XIR Implementation Specification](papers/XIR-Implementation-Spec.md) - implementation contracts and conformance details.
     3. [XIR Positioning Note](papers/XIR_W3C_Positioning_Note.md) - relation to XML, RDF, SKOS, SHACL, PROV-O, and OpenLineage.
     4. [XIR W3C Merged Paper](papers/XIR_W3C_Merged_Paper.md) - consolidated standards-oriented version.
+    5. [XIR Starter Kit](xir-starter-kit/README.md) - canonical entry point for XIR adoption and experimentation.
   - **Governance, evidence, and ontology alignment**
     1. [Evidence-Oriented Enterprise Knowledge Graph Federation](papers/XIR-GOV-Evidence-Oriented-Enterprise-Knowledge-Graph-Federation.md) - evidence-first governance and federated graph architecture.
     2. [Observation-Driven Ontology Alignment](papers/Observation-Driven_Ontology_Alignment.md) - explicit, auditable alignment of source and governance semantics.

@@ -1,0 +1,6 @@
+(.
+  (customer
+    {id "123"}
+    (name "Jurgen")
+  )
+)

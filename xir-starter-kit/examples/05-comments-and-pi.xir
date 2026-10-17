@@ -1,0 +1,5 @@
+(.
+  (? xml-stylesheet {href "style.xsl" type "text/xsl"})
+  (! "Example document")
+  (root)
+)

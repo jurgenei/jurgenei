@@ -1,0 +1,9 @@
+(.
+  {xmlns:app "urn:application" xmlns:data "urn:data" xmlns:prov "urn:provenance"}
+  (app:Component
+    {id "processor-1"}
+    (data:Input {ref "contracts"})
+    (data:Output {ref "exposures"})
+    (prov:Source {ref "repository-1"})
+  )
+)
